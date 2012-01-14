@@ -23,7 +23,8 @@ import java.io.IOException;
 import java.io.InputStream;
 
 /**
- * TODO: javadoc
+ * This <code>InputStream</code> does nothing. It is always at the EOF position.
+ * It never throws <code>IOException</code>.
  * 
  * @author <a href="mailto:opalka dot richard at gmail dot com">Richard Opalka</a>
  */
@@ -32,58 +33,112 @@ public final class NullInputStream extends InputStream {
     private static final NullInputStream INSTANCE = new NullInputStream();
 
     private NullInputStream() {
-        // forbidden constructor
     }
 
+    /**
+     * Returns <code>NullInputStream</code> singleton instance.
+     * 
+     * @return <code>NullInputStream</code> singleton instance
+     */
     public static NullInputStream getInstance() {
         return INSTANCE;
     }
 
+    /**
+     * Does nothing.
+     * 
+     * @return <code>-1</code>
+     * @throws IOException never thrown
+     */
     @Override
     public int read() throws IOException {
-        return -1;
+        return Constants.EOF;
     }
 
+    /**
+     * Does nothing.
+     * 
+     * @param buffer ignored
+     * @return <code>-1</code>
+     * @throws IOException never thrown
+     */
     @Override
     public int read( final byte[] buffer ) throws IOException {
-        return -1;
+        return Constants.EOF;
     }
 
+    /**
+     * Does nothing.
+     * 
+     * @param buffer ignored
+     * @param offset ignored
+     * @param length ignored
+     * @return <code>-1</code>
+     * @throws IOException never thrown
+     */
     @Override
     public int read( final byte[] buffer, final int offset, final int length ) throws IOException {
-        return -1;
+        return Constants.EOF;
     }
 
+    /**
+     * Does nothing.
+     * 
+     * @throws IOException never thrown
+     */
     @Override
     public void close() throws IOException {
-        // does nothing
     }
 
+    /**
+     * Does nothing.
+     * 
+     * @param count ignored
+     * @return <code>0</code>
+     * @throws IOException never thrown
+     */
     @Override
     public long skip( final long count ) throws IOException {
-        // does nothing
-        return 0L;
+        return Constants.ZERO;
     }
 
+    /**
+     * Does nothing.
+     * 
+     * @return <code>0</code>
+     * @throws IOException never thrown
+     */
     @Override
     public int available() throws IOException {
-        // does nothing
-        return 0;
+        return Constants.ZERO;
     }
 
+    /**
+     * Does nothing.
+     * 
+     * @param readLimit ignored
+     * @throws IOException never thrown
+     */
     @Override
     public void mark( final int readLimit ) {
-        // does nothing
     }
 
+    /**
+     * Does nothing.
+     * 
+     * @throws IOException never thrown
+     */
     @Override
     public void reset() throws IOException {
-        // does nothing
     }
 
+    /**
+     * Does nothing.
+     * 
+     * @return <code>false</code>
+     */
     @Override
     public boolean markSupported() {
-        // does nothing
-        return false;
+        return Boolean.FALSE.booleanValue();
     }
 }

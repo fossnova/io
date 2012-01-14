@@ -24,7 +24,8 @@ import java.io.Reader;
 import java.nio.CharBuffer;
 
 /**
- * TODO: javadoc
+ * This <code>Reader</code> does nothing. It is always at the EOF position. It
+ * never throws <code>IOException</code>.
  * 
  * @author <a href="mailto:opalka dot richard at gmail dot com">Richard Opalka</a>
  */
@@ -33,67 +34,124 @@ public final class NullReader extends Reader {
     private static final NullReader INSTANCE = new NullReader();
 
     private NullReader() {
-        // forbidden constructor
     }
 
+    /**
+     * Returns <code>NullReader</code> singleton instance.
+     * 
+     * @return <code>NullReader</code> singleton instance
+     */
     public static NullReader getInstance() {
         return INSTANCE;
     }
 
+    /**
+     * Does nothing.
+     * 
+     * @param buffer ignored
+     * @return <code>-1</code>
+     * @throws IOException never thrown
+     */
     @Override
     public int read( final CharBuffer buffer ) throws IOException {
-        // does nothing
-        return -1;
+        return Constants.EOF;
     }
 
+    /**
+     * Does nothing.
+     * 
+     * @return <code>-1</code>
+     * @throws IOException never thrown
+     */
     @Override
     public int read() throws IOException {
-        // does nothing
-        return -1;
+        return Constants.EOF;
     }
 
+    /**
+     * Does nothing.
+     * 
+     * @param buffer ignored
+     * @return <code>-1</code>
+     * @throws IOException never thrown
+     */
     @Override
     public int read( final char[] buffer ) throws IOException {
-        // does nothing
-        return -1;
+        return Constants.EOF;
     }
 
+    /**
+     * Does nothing.
+     * 
+     * @param buffer ignored
+     * @param offset ignored
+     * @param length ignored
+     * @return <code>-1</code>
+     * @throws IOException never thrown
+     */
     @Override
     public int read( final char[] buffer, final int offset, final int length ) throws IOException {
-        // does nothing
-        return -1;
+        return Constants.EOF;
     }
 
+    /**
+     * Does nothing.
+     * 
+     * @throws IOException never thrown
+     */
     @Override
     public void close() throws IOException {
-        // does nothing
     }
 
+    /**
+     * Does nothing.
+     * 
+     * @param count ignored
+     * @return <code>0</code>
+     * @throws IOException never thrown
+     */
     @Override
     public long skip( final long count ) throws IOException {
-        // does nothing
-        return 0L;
+        return Constants.ZERO;
     }
 
+    /**
+     * Does nothing.
+     * 
+     * @return <code>false</code>
+     * @throws IOException never thrown
+     */
     @Override
     public boolean ready() throws IOException {
-        // does nothing
-        return false;
+        return Boolean.FALSE.booleanValue();
     }
 
+    /**
+     * Does nothing.
+     * 
+     * @return <code>false</code>
+     */
     @Override
     public boolean markSupported() {
-        // does nothing
-        return false;
+        return Boolean.FALSE.booleanValue();
     }
 
+    /**
+     * Does nothing.
+     * 
+     * @param readAheadLimit ignored
+     * @throws IOException never thrown
+     */
     @Override
     public void mark( final int readAheadLimit ) throws IOException {
-        // does nothing
     }
 
+    /**
+     * Does nothing.
+     * 
+     * @throws IOException never thrown
+     */
     @Override
     public void reset() throws IOException {
-        // does nothing
     }
 }

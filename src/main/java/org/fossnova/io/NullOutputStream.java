@@ -23,7 +23,8 @@ import java.io.IOException;
 import java.io.OutputStream;
 
 /**
- * TODO: javadoc
+ * This <code>OutputStream</code> does nothing. All data written to it are
+ * completely ignored. It never throws <code>IOException</code>.
  * 
  * @author <a href="mailto:opalka dot richard at gmail dot com">Richard Opalka</a>
  */
@@ -32,35 +33,64 @@ public final class NullOutputStream extends OutputStream {
     private static final NullOutputStream INSTANCE = new NullOutputStream();
 
     private NullOutputStream() {
-        // forbidden constructor
     }
 
+    /**
+     * Returns <code>NullOutputStream</code> singleton instance.
+     * 
+     * @return <code>NullOutputStream</code> singleton instance
+     */
     public static NullOutputStream getInstance() {
         return INSTANCE;
     }
 
+    /**
+     * Does nothing.
+     * 
+     * @param data ignored
+     * @throws IOException never thrown
+     */
     @Override
     public void write( final int data ) throws IOException {
-        // does nothing
     }
 
+    /**
+     * Does nothing.
+     * 
+     * @param data ignored
+     * @throws IOException never thrown
+     */
     @Override
     public void write( final byte[] data ) throws IOException {
-        // does nothing
     }
 
+    /**
+     * Does nothing.
+     * 
+     * @param data ignored
+     * @param offset ignored
+     * @param length ignored
+     * @throws IOException never thrown
+     */
     @Override
     public void write( final byte[] data, final int offset, final int length ) throws IOException {
-        // does nothing
     }
 
+    /**
+     * Does nothing.
+     * 
+     * @throws IOException never thrown
+     */
     @Override
     public void flush() throws IOException {
-        // does nothing
     }
 
+    /**
+     * Does nothing.
+     * 
+     * @throws IOException never thrown
+     */
     @Override
     public void close() throws IOException {
-        // does nothing
     }
 }

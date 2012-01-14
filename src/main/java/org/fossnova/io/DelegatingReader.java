@@ -37,7 +37,9 @@ public class DelegatingReader extends Reader {
     }
 
     public DelegatingReader( final Reader delegate ) {
-        if ( delegate == null ) throw new IllegalArgumentException();
+        if ( delegate == null ) {
+            throw new IllegalArgumentException();
+        }
         this.delegate = delegate;
     }
 

@@ -36,7 +36,9 @@ public class DelegatingWriter extends Writer {
     }
 
     public DelegatingWriter( final Writer delegate ) {
-        if ( delegate == null ) throw new IllegalArgumentException();
+        if ( delegate == null ) {
+            throw new IllegalArgumentException();
+        }
         this.delegate = delegate;
     }
 

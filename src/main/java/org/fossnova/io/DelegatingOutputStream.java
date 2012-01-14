@@ -36,7 +36,9 @@ public class DelegatingOutputStream extends OutputStream {
     }
 
     public DelegatingOutputStream( final OutputStream delegate ) {
-        if ( delegate == null ) throw new IllegalArgumentException();
+        if ( delegate == null ) {
+            throw new IllegalArgumentException();
+        }
         this.delegate = delegate;
     }
 

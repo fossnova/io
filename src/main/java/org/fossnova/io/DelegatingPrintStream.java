@@ -39,7 +39,9 @@ public class DelegatingPrintStream extends PrintStream {
 
     public DelegatingPrintStream( final PrintStream delegate ) {
         super( NullOutputStream.getInstance() );
-        if ( delegate == null ) throw new IllegalArgumentException();
+        if ( delegate == null ) {
+            throw new IllegalArgumentException();
+        }
         this.delegate = delegate;
     }
 

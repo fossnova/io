@@ -24,7 +24,8 @@ import java.io.PrintStream;
 import java.util.Locale;
 
 /**
- * TODO: javadoc
+ * This <code>PrintStream</code> does nothing. All data written to it are
+ * completely ignored. It never throws <code>IOException</code>.
  * 
  * @author <a href="mailto:opalka dot richard at gmail dot com">Richard Opalka</a>
  */
@@ -33,179 +34,323 @@ public final class NullPrintStream extends PrintStream {
     private static final NullPrintStream INSTANCE = new NullPrintStream();
 
     private NullPrintStream() {
-        // forbidden constructor
         super( NullOutputStream.getInstance() );
     }
 
+    /**
+     * Returns <code>NullPrintStream</code> singleton instance.
+     * 
+     * @return <code>NullPrintStream</code> singleton instance
+     */
     public static NullPrintStream getInstance() {
         return INSTANCE;
     }
 
+    /**
+     * Does nothing.
+     */
     @Override
     public void flush() {
-        // does nothing
     }
 
+    /**
+     * Does nothing.
+     */
     @Override
     public void close() {
-        // does nothing
     }
 
+    /**
+     * Does nothing.
+     * 
+     * @return <code>false</code>
+     */
     @Override
     public boolean checkError() {
-        // does nothing
-        return false;
+        return Boolean.FALSE.booleanValue();
     }
 
-    @Override
-    public void write( final int data ) {
-        // does nothing
-    }
-
-    @Override
-    public void write( final byte[] data, final int offset, final int length ) {
-        // does nothing
-    }
-
-    @Override
-    public void print( final boolean data ) {
-        // does nothing
-    }
-
-    @Override
-    public void print( final char data ) {
-        // does nothing
-    }
-
-    @Override
-    public void print( final int data ) {
-        // does nothing
-    }
-
-    @Override
-    public void print( final long data ) {
-        // does nothing
-    }
-
-    @Override
-    public void print( final float data ) {
-        // does nothing
-    }
-
-    @Override
-    public void print( final double data ) {
-        // does nothing
-    }
-
-    @Override
-    public void print( final char[] data ) {
-        // does nothing
-    }
-
-    @Override
-    public void print( final String data ) {
-        // does nothing
-    }
-
-    @Override
-    public void print( final Object data ) {
-        // does nothing
-    }
-
-    @Override
-    public void println() {
-        // does nothing
-    }
-
-    @Override
-    public void println( final boolean data ) {
-        // does nothing
-    }
-
-    @Override
-    public void println( final char data ) {
-        // does nothing
-    }
-
-    @Override
-    public void println( final int data ) {
-        // does nothing
-    }
-
-    @Override
-    public void println( final long data ) {
-        // does nothing
-    }
-
-    @Override
-    public void println( final float data ) {
-        // does nothing
-    }
-
-    @Override
-    public void println( final double data ) {
-        // does nothing
-    }
-
-    @Override
-    public void println( final char[] data ) {
-        // does nothing
-    }
-
-    @Override
-    public void println( final String data ) {
-        // does nothing
-    }
-
-    @Override
-    public void println( final Object data ) {
-        // does nothing
-    }
-
-    @Override
-    public PrintStream printf( final String format, final Object ... args ) {
-        // does nothing
-        return this;
-    }
-
-    @Override
-    public PrintStream printf( final Locale locale, final String format, final Object ... args ) {
-        // does nothing
-        return this;
-    }
-
-    @Override
-    public PrintStream format( final String format, final Object ... args ) {
-        // does nothing
-        return this;
-    }
-
-    @Override
-    public PrintStream format( final Locale locale, final String format, final Object ... args ) {
-        // does nothing
-        return this;
-    }
-
-    @Override
-    public PrintStream append( final CharSequence data ) {
-        // does nothing
-        return this;
-    }
-
-    @Override
-    public PrintStream append( final CharSequence data, final int start, final int end ) {
-        // does nothing
-        return this;
-    }
-
-    @Override
-    public PrintStream append( final char data ) {
-        // does nothing
-        return this;
-    }
-
+    /**
+     * Does nothing.
+     * 
+     * @param data ignored
+     * @throws IOException never thrown
+     */
     @Override
     public void write( final byte[] data ) throws IOException {
-        // does nothing
+    }
+
+    /**
+     * Does nothing.
+     * 
+     * @param data ignored
+     */
+    @Override
+    public void write( final int data ) {
+    }
+
+    /**
+     * Does nothing.
+     * 
+     * @param data ignored
+     * @param offset ignored
+     * @param length ignored
+     */
+    @Override
+    public void write( final byte[] data, final int offset, final int length ) {
+    }
+
+    /**
+     * Does nothing.
+     * 
+     * @param data ignored
+     */
+    @Override
+    public void print( final boolean data ) {
+    }
+
+    /**
+     * Does nothing.
+     * 
+     * @param data ignored
+     */
+    @Override
+    public void print( final char data ) {
+    }
+
+    /**
+     * Does nothing.
+     * 
+     * @param data ignored
+     */
+    @Override
+    public void print( final int data ) {
+    }
+
+    /**
+     * Does nothing.
+     * 
+     * @param data ignored
+     */
+    @Override
+    public void print( final long data ) {
+    }
+
+    /**
+     * Does nothing.
+     * 
+     * @param data ignored
+     */
+    @Override
+    public void print( final float data ) {
+    }
+
+    /**
+     * Does nothing.
+     * 
+     * @param data ignored
+     */
+    @Override
+    public void print( final double data ) {
+    }
+
+    /**
+     * Does nothing.
+     * 
+     * @param data ignored
+     */
+    @Override
+    public void print( final char[] data ) {
+    }
+
+    /**
+     * Does nothing.
+     * 
+     * @param data ignored
+     */
+    @Override
+    public void print( final String data ) {
+    }
+
+    /**
+     * Does nothing.
+     * 
+     * @param data ignored
+     */
+    @Override
+    public void print( final Object data ) {
+    }
+
+    /**
+     * Does nothing.
+     */
+    @Override
+    public void println() {
+    }
+
+    /**
+     * Does nothing.
+     * 
+     * @param data ignored
+     */
+    @Override
+    public void println( final boolean data ) {
+    }
+
+    /**
+     * Does nothing.
+     * 
+     * @param data ignored
+     */
+    @Override
+    public void println( final char data ) {
+    }
+
+    /**
+     * Does nothing.
+     * 
+     * @param data ignored
+     */
+    @Override
+    public void println( final int data ) {
+    }
+
+    /**
+     * Does nothing.
+     * 
+     * @param data ignored
+     */
+    @Override
+    public void println( final long data ) {
+    }
+
+    /**
+     * Does nothing.
+     * 
+     * @param data ignored
+     */
+    @Override
+    public void println( final float data ) {
+    }
+
+    /**
+     * Does nothing.
+     * 
+     * @param data ignored
+     */
+    @Override
+    public void println( final double data ) {
+    }
+
+    /**
+     * Does nothing.
+     * 
+     * @param data ignored
+     */
+    @Override
+    public void println( final char[] data ) {
+    }
+
+    /**
+     * Does nothing.
+     * 
+     * @param data ignored
+     */
+    @Override
+    public void println( final String data ) {
+    }
+
+    /**
+     * Does nothing.
+     * 
+     * @param data ignored
+     */
+    @Override
+    public void println( final Object data ) {
+    }
+
+    /**
+     * Does nothing.
+     * 
+     * @param format ignored
+     * @param args ignored
+     * @return This print stream
+     */
+    @Override
+    public PrintStream printf( final String format, final Object ... args ) {
+        return this;
+    }
+
+    /**
+     * Does nothing.
+     * 
+     * @param locale ignored
+     * @param format ignored
+     * @param args ignored
+     * @return This print stream
+     */
+    @Override
+    public PrintStream printf( final Locale locale, final String format, final Object ... args ) {
+        return this;
+    }
+
+    /**
+     * Does nothing.
+     * 
+     * @param format ignored
+     * @param args ignored
+     * @return This print stream
+     */
+    @Override
+    public PrintStream format( final String format, final Object ... args ) {
+        return this;
+    }
+
+    /**
+     * Does nothing.
+     * 
+     * @param locale ignored
+     * @param format ignored
+     * @param args ignored
+     * @return This print stream
+     */
+    @Override
+    public PrintStream format( final Locale locale, final String format, final Object ... args ) {
+        return this;
+    }
+
+    /**
+     * Does nothing.
+     * 
+     * @param data ignored
+     * @return This print stream
+     */
+    @Override
+    public PrintStream append( final CharSequence data ) {
+        return this;
+    }
+
+    /**
+     * Does nothing.
+     * 
+     * @param data ignored
+     * @param start ignored
+     * @param end ignored
+     * @return This print stream
+     */
+    @Override
+    public PrintStream append( final CharSequence data, final int start, final int end ) {
+        return this;
+    }
+
+    /**
+     * Does nothing.
+     * 
+     * @param data ignored
+     * @return This print stream
+     */
+    @Override
+    public PrintStream append( final char data ) {
+        return this;
     }
 }

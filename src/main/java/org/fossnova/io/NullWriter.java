@@ -23,7 +23,8 @@ import java.io.IOException;
 import java.io.Writer;
 
 /**
- * TODO: javadoc
+ * This <code>Writer</code> does nothing. All data written to it are completely
+ * ignored. It never throws <code>IOException</code>.
  * 
  * @author <a href="mailto:opalka dot richard at gmail dot com">Richard Opalka</a>
  */
@@ -32,63 +33,124 @@ public final class NullWriter extends Writer {
     private static final NullWriter INSTANCE = new NullWriter();
 
     private NullWriter() {
-        // forbidden constructor
     }
 
+    /**
+     * Returns <code>NullWriter</code> singleton instance.
+     * 
+     * @return <code>NullWriter</code> singleton instance
+     */
     public static NullWriter getInstance() {
         return INSTANCE;
     }
 
+    /**
+     * Does nothing.
+     * 
+     * @param data ignored
+     * @throws IOException never thrown
+     */
     @Override
     public void write( final int data ) throws IOException {
-        // does nothing
     }
 
+    /**
+     * Does nothing.
+     * 
+     * @param data ignored
+     * @throws IOException never thrown
+     */
     @Override
     public void write( final char[] data ) throws IOException {
-        // does nothing
     }
 
+    /**
+     * Does nothing.
+     * 
+     * @param data ignored
+     * @param offset ignored
+     * @param length ignored
+     * @throws IOException never thrown
+     */
     @Override
     public void write( final char[] data, final int offset, final int length ) throws IOException {
-        // does nothing
     }
 
+    /**
+     * Does nothing.
+     * 
+     * @param data ignored
+     * @throws IOException never thrown
+     */
     @Override
     public void write( final String data ) throws IOException {
-        // does nothing
     }
 
+    /**
+     * Does nothing.
+     * 
+     * @param data ignored
+     * @param offset ignored
+     * @param length ignored
+     * @throws IOException never thrown
+     */
     @Override
     public void write( final String data, final int offset, final int length ) throws IOException {
-        // does nothing
     }
 
+    /**
+     * Does nothing.
+     * 
+     * @param data ignored
+     * @throws IOException never thrown
+     * @return This writer
+     */
     @Override
     public Writer append( final CharSequence data ) throws IOException {
-        // does nothing
         return this;
     }
 
+    /**
+     * Does nothing.
+     * 
+     * @param data ignored
+     * @param start ignored
+     * @param end ignored
+     * @throws IOException never thrown
+     * @return This writer
+     */
     @Override
     public Writer append( final CharSequence data, final int start, final int end ) throws IOException {
-        // does nothing
         return this;
     }
 
+    /**
+     * Does nothing.
+     * 
+     * @param data ignored
+     * @throws IOException never thrown
+     * @return This writer
+     */
     @Override
     public Writer append( final char data ) throws IOException {
-        // does nothing
         return this;
     }
 
+    /**
+     * Does nothing.
+     * 
+     * @throws IOException never thrown
+     */
     @Override
     public void flush() throws IOException {
-        // does nothing
     }
 
+    /**
+     * Does nothing.
+     * 
+     * @throws IOException never thrown
+     */
     @Override
     public void close() throws IOException {
-        // does nothing
     }
 }
