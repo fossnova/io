@@ -158,7 +158,7 @@
         <module name="LocalVariableName"/>
         <!-- Checks for magic numbers. -->
         <module name="MagicNumber">
-            <property name="ignoreNumbers" value="-1, 0, 1"/>
+            <property name="ignoreNumbers" value="-1, 0, 1, 2"/>
         </module>
         <!-- Checks that instance variable names conform to a format specified by the format property. -->
         <module name="MemberName"/>
