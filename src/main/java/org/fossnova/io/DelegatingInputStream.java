@@ -23,18 +23,35 @@ import java.io.IOException;
 import java.io.InputStream;
 
 /**
- * TODO: javadoc
- * 
+ * <p>
+ * A <code>DelegatingInputStream</code> overrides all methods of
+ * <code>InputStream</code> and delegates their execution to the wrapped
+ * <code>InputStream</code>. The wrapped <code>InputStream</code>
+ * is always obtained via {@link #getDelegate()} method.
+ * </p>
+ * <p>
+ * This class represents the alternative to <code>java.io.FilterInputStream</code>. 
+ * </p>
+ *
  * @author <a href="mailto:opalka dot richard at gmail dot com">Richard Opalka</a>
  */
 public class DelegatingInputStream extends InputStream {
 
     private final InputStream delegate;
 
+    /**
+     * Creates a <code>DelegatingInputStream</code> that wraps {@link org.fossnova.io.NullInputStream}.
+     */
     public DelegatingInputStream() {
-        delegate = NullInputStream.getInstance();
+        this( NullInputStream.getInstance() );
     }
 
+    /**
+     * Creates a <code>DelegatingInputStream</code> that wraps passed input stream.
+     *
+     * @param delegate the input stream to be wrapped
+     * @throws <code>IllegalArgumentException</code> if parameter is null
+     */
     public DelegatingInputStream( final InputStream delegate ) {
         if ( delegate == null ) {
             throw new IllegalArgumentException();
@@ -42,50 +59,80 @@ public class DelegatingInputStream extends InputStream {
         this.delegate = delegate;
     }
 
+    /**
+     * Returns wrapped input stream.
+     */
     protected InputStream getDelegate() {
         return delegate;
     }
 
+    /**
+     * Delegates the call to the wrapped input stream.
+     */
     @Override
     public final int read() throws IOException {
         return getDelegate().read();
     }
 
+    /**
+     * Delegates the call to the wrapped input stream.
+     */
     @Override
     public final int read( final byte[] buffer ) throws IOException {
         return getDelegate().read( buffer );
     }
 
+    /**
+     * Delegates the call to the wrapped input stream.
+     */
     @Override
     public final int read( final byte[] buffer, final int offset, final int length ) throws IOException {
         return getDelegate().read( buffer, offset, length );
     }
 
+    /**
+     * Delegates the call to the wrapped input stream.
+     */
     @Override
     public final void close() throws IOException {
         getDelegate().close();
     }
 
+    /**
+     * Delegates the call to the wrapped input stream.
+     */
     @Override
     public final long skip( final long count ) throws IOException {
         return getDelegate().skip( count );
     }
 
+    /**
+     * Delegates the call to the wrapped input stream.
+     */
     @Override
     public final int available() throws IOException {
         return getDelegate().available();
     }
 
+    /**
+     * Delegates the call to the wrapped input stream.
+     */
     @Override
     public final void mark( final int readLimit ) {
         getDelegate().mark( readLimit );
     }
 
+    /**
+     * Delegates the call to the wrapped input stream.
+     */
     @Override
     public final void reset() throws IOException {
         getDelegate().reset();
     }
 
+    /**
+     * Delegates the call to the wrapped input stream.
+     */
     @Override
     public final boolean markSupported() {
         return getDelegate().markSupported();

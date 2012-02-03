@@ -23,7 +23,15 @@ import java.io.IOException;
 import java.io.Writer;
 
 /**
- * TODO: javadoc
+ * <p>
+ * A <code>DelegatingWriter</code> overrides all methods of
+ * <code>Writer</code> and delegates their execution to the wrapped
+ * <code>Writer</code>. The wrapped <code>Writer</code>
+ * is always obtained via {@link #getDelegate()} method.
+ * </p>
+ * <p>
+ * This class represents the alternative to <code>java.io.FilterWriter</code>. 
+ * </p>
  * 
  * @author <a href="mailto:opalka dot richard at gmail dot com">Richard Opalka</a>
  */
@@ -31,10 +39,19 @@ public class DelegatingWriter extends Writer {
 
     private final Writer delegate;
 
+    /**
+     * Creates a <code>DelegatingWriter</code> that wraps {@link org.fossnova.io.NullWriter}.
+     */
     public DelegatingWriter() {
-        delegate = NullWriter.getInstance();
+        this( NullWriter.getInstance() );
     }
 
+    /**
+     * Creates a <code>DelegatingWriter</code> that wraps passed writer.
+     *
+     * @param delegate the writer to be wrapped
+     * @throws <code>IllegalArgumentException</code> if parameter is null
+     */
     public DelegatingWriter( final Writer delegate ) {
         if ( delegate == null ) {
             throw new IllegalArgumentException();
@@ -42,58 +59,91 @@ public class DelegatingWriter extends Writer {
         this.delegate = delegate;
     }
 
+    /**
+     * Returns wrapped writer.
+     */
     protected Writer getDelegate() {
         return delegate;
     }
 
+    /**
+     * Delegates the call to the wrapped writer.
+     */
     @Override
     public final void write( final int data ) throws IOException {
         getDelegate().write( data );
     }
 
+    /**
+     * Delegates the call to the wrapped writer.
+     */
     @Override
     public final void write( final char[] data ) throws IOException {
         getDelegate().write( data );
     }
 
+    /**
+     * Delegates the call to the wrapped writer.
+     */
     @Override
     public final void write( final char[] data, final int offset, final int length ) throws IOException {
         getDelegate().write( data, offset, length );
     }
 
+    /**
+     * Delegates the call to the wrapped writer.
+     */
     @Override
     public final void write( final String data ) throws IOException {
         getDelegate().write( data );
     }
 
+    /**
+     * Delegates the call to the wrapped writer.
+     */
     @Override
     public final void write( final String data, final int offset, final int length ) throws IOException {
         getDelegate().write( data, offset, length );
     }
 
+    /**
+     * Delegates the call to the wrapped writer.
+     */
     @Override
     public final Writer append( final CharSequence data ) throws IOException {
         getDelegate().append( data );
         return this;
     }
 
+    /**
+     * Delegates the call to the wrapped writer.
+     */
     @Override
     public final Writer append( final CharSequence data, final int start, final int end ) throws IOException {
         getDelegate().append( data, start, end );
         return this;
     }
 
+    /**
+     * Delegates the call to the wrapped writer.
+     */
     @Override
     public final Writer append( final char data ) throws IOException {
         getDelegate().append( data );
         return this;
     }
 
+    /**
+     * Delegates the call to the wrapped writer.
+     */
     @Override
     public final void flush() throws IOException {
         getDelegate().flush();
     }
 
+    /**
+     * Delegates the call to the wrapped writer.
+     */
     @Override
     public final void close() throws IOException {
         getDelegate().close();

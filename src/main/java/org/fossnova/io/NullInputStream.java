@@ -37,8 +37,6 @@ public final class NullInputStream extends InputStream {
 
     /**
      * Returns <code>NullInputStream</code> singleton instance.
-     * 
-     * @return <code>NullInputStream</code> singleton instance
      */
     public static NullInputStream getInstance() {
         return INSTANCE;
@@ -46,9 +44,6 @@ public final class NullInputStream extends InputStream {
 
     /**
      * Does nothing.
-     * 
-     * @return <code>-1</code>
-     * @throws IOException never thrown
      */
     @Override
     public int read() throws IOException {
@@ -57,10 +52,6 @@ public final class NullInputStream extends InputStream {
 
     /**
      * Does nothing.
-     * 
-     * @param buffer ignored
-     * @return <code>-1</code>
-     * @throws IOException never thrown
      */
     @Override
     public int read( final byte[] buffer ) throws IOException {
@@ -69,12 +60,6 @@ public final class NullInputStream extends InputStream {
 
     /**
      * Does nothing.
-     * 
-     * @param buffer ignored
-     * @param offset ignored
-     * @param length ignored
-     * @return <code>-1</code>
-     * @throws IOException never thrown
      */
     @Override
     public int read( final byte[] buffer, final int offset, final int length ) throws IOException {
@@ -83,8 +68,6 @@ public final class NullInputStream extends InputStream {
 
     /**
      * Does nothing.
-     * 
-     * @throws IOException never thrown
      */
     @Override
     public void close() throws IOException {
@@ -92,10 +75,6 @@ public final class NullInputStream extends InputStream {
 
     /**
      * Does nothing.
-     * 
-     * @param count ignored
-     * @return <code>0</code>
-     * @throws IOException never thrown
      */
     @Override
     public long skip( final long count ) throws IOException {
@@ -104,9 +83,6 @@ public final class NullInputStream extends InputStream {
 
     /**
      * Does nothing.
-     * 
-     * @return <code>0</code>
-     * @throws IOException never thrown
      */
     @Override
     public int available() throws IOException {
@@ -115,9 +91,6 @@ public final class NullInputStream extends InputStream {
 
     /**
      * Does nothing.
-     * 
-     * @param readLimit ignored
-     * @throws IOException never thrown
      */
     @Override
     public void mark( final int readLimit ) {
@@ -125,8 +98,6 @@ public final class NullInputStream extends InputStream {
 
     /**
      * Does nothing.
-     * 
-     * @throws IOException never thrown
      */
     @Override
     public void reset() throws IOException {
@@ -134,8 +105,6 @@ public final class NullInputStream extends InputStream {
 
     /**
      * Does nothing.
-     * 
-     * @return <code>false</code>
      */
     @Override
     public boolean markSupported() {

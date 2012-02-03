@@ -24,7 +24,12 @@ import java.io.PrintStream;
 import java.util.Locale;
 
 /**
- * TODO: javadoc
+ * <p>
+ * A <code>DelegatingPrintStream</code> overrides all methods of
+ * <code>PrintStream</code> and delegates their execution to the wrapped
+ * <code>PrintStream</code>. The wrapped <code>PrintStream</code>
+ * is always obtained via {@link #getDelegate()} method.
+ * </p>
  * 
  * @author <a href="mailto:opalka dot richard at gmail dot com">Richard Opalka</a>
  */
@@ -32,11 +37,19 @@ public class DelegatingPrintStream extends PrintStream {
 
     private final PrintStream delegate;
 
+    /**
+     * Creates a <code>DelegatingPrintStream</code> that wraps {@link org.fossnova.io.NullPrintStream}.
+     */
     public DelegatingPrintStream() {
-        super( NullOutputStream.getInstance() );
-        delegate = NullPrintStream.getInstance();
+        this( NullPrintStream.getInstance() );
     }
 
+    /**
+     * Creates a <code>DelegatingPrintStream</code> that wraps passed print stream.
+     *
+     * @param delegate the print stream to be wrapped
+     * @throws <code>IllegalArgumentException</code> if parameter is null
+     */
     public DelegatingPrintStream( final PrintStream delegate ) {
         super( NullOutputStream.getInstance() );
         if ( delegate == null ) {
@@ -45,172 +58,271 @@ public class DelegatingPrintStream extends PrintStream {
         this.delegate = delegate;
     }
 
+    /**
+     * Returns wrapped print stream.
+     */
     protected PrintStream getDelegate() {
         return delegate;
     }
 
+    /**
+     * Delegates the call to the wrapped print stream.
+     */
     @Override
     public final void flush() {
         getDelegate().flush();
     }
 
+    /**
+     * Delegates the call to the wrapped print stream.
+     */
     @Override
     public final void close() {
         getDelegate().close();
     }
 
+    /**
+     * Delegates the call to the wrapped print stream.
+     */
     @Override
     public final boolean checkError() {
         return getDelegate().checkError();
     }
 
+    /**
+     * Delegates the call to the wrapped print stream.
+     */
     @Override
     public final void write( final int data ) {
         getDelegate().write( data );
     }
 
+    /**
+     * Delegates the call to the wrapped print stream.
+     */
     @Override
     public final void write( final byte[] data, final int offset, final int length ) {
         getDelegate().write( data, offset, length );
     }
 
+    /**
+     * Delegates the call to the wrapped print stream.
+     */
     @Override
     public final void print( final boolean data ) {
         getDelegate().print( data );
     }
 
+    /**
+     * Delegates the call to the wrapped print stream.
+     */
     @Override
     public final void print( final char data ) {
         getDelegate().print( data );
     }
 
+    /**
+     * Delegates the call to the wrapped print stream.
+     */
     @Override
     public final void print( final int data ) {
         getDelegate().print( data );
     }
 
+    /**
+     * Delegates the call to the wrapped print stream.
+     */
     @Override
     public final void print( final long data ) {
         getDelegate().print( data );
     }
 
+    /**
+     * Delegates the call to the wrapped print stream.
+     */
     @Override
     public final void print( final float data ) {
         getDelegate().print( data );
     }
 
+    /**
+     * Delegates the call to the wrapped print stream.
+     */
     @Override
     public final void print( final double data ) {
         getDelegate().print( data );
     }
 
+    /**
+     * Delegates the call to the wrapped print stream.
+     */
     @Override
     public final void print( final char[] data ) {
         getDelegate().print( data );
     }
 
+    /**
+     * Delegates the call to the wrapped print stream.
+     */
     @Override
     public final void print( final String data ) {
         getDelegate().print( data );
     }
 
+    /**
+     * Delegates the call to the wrapped print stream.
+     */
     @Override
     public final void print( final Object data ) {
         getDelegate().print( data );
     }
 
+    /**
+     * Delegates the call to the wrapped print stream.
+     */
     @Override
     public final void println() {
         getDelegate().println();
     }
 
+    /**
+     * Delegates the call to the wrapped print stream.
+     */
     @Override
     public final void println( final boolean data ) {
         getDelegate().println( data );
     }
 
+    /**
+     * Delegates the call to the wrapped print stream.
+     */
     @Override
     public final void println( final char data ) {
         getDelegate().println( data );
     }
 
+    /**
+     * Delegates the call to the wrapped print stream.
+     */
     @Override
     public final void println( final int data ) {
         getDelegate().println( data );
     }
 
+    /**
+     * Delegates the call to the wrapped print stream.
+     */
     @Override
     public final void println( final long data ) {
         getDelegate().println( data );
     }
 
+    /**
+     * Delegates the call to the wrapped print stream.
+     */
     @Override
     public final void println( final float data ) {
         getDelegate().println( data );
     }
 
+    /**
+     * Delegates the call to the wrapped print stream.
+     */
     @Override
     public final void println( final double data ) {
         getDelegate().println( data );
     }
 
+    /**
+     * Delegates the call to the wrapped print stream.
+     */
     @Override
     public final void println( final char[] data ) {
         getDelegate().println( data );
     }
 
+    /**
+     * Delegates the call to the wrapped print stream.
+     */
     @Override
     public final void println( final String data ) {
         getDelegate().println( data );
     }
 
+    /**
+     * Delegates the call to the wrapped print stream.
+     */
     @Override
     public final void println( final Object data ) {
         getDelegate().println( data );
     }
 
+    /**
+     * Delegates the call to the wrapped print stream.
+     */
     @Override
     public final PrintStream printf( final String format, final Object ... args ) {
         getDelegate().printf( format, args );
         return this;
     }
 
+    /**
+     * Delegates the call to the wrapped print stream.
+     */
     @Override
     public final PrintStream printf( final Locale locale, final String format, final Object ... args ) {
         getDelegate().printf( locale, format, args );
         return this;
     }
 
+    /**
+     * Delegates the call to the wrapped print stream.
+     */
     @Override
     public final PrintStream format( final String format, final Object ... args ) {
         getDelegate().format( format, args );
         return this;
     }
 
+    /**
+     * Delegates the call to the wrapped print stream.
+     */
     @Override
     public final PrintStream format( final Locale locale, final String format, final Object ... args ) {
         getDelegate().format( locale, format, args );
         return this;
     }
 
+    /**
+     * Delegates the call to the wrapped print stream.
+     */
     @Override
     public final PrintStream append( final CharSequence data ) {
         getDelegate().append( data );
         return this;
     }
 
+    /**
+     * Delegates the call to the wrapped print stream.
+     */
     @Override
     public final PrintStream append( final CharSequence data, final int start, final int end ) {
         getDelegate().append( data, start, end );
         return this;
     }
 
+    /**
+     * Delegates the call to the wrapped print stream.
+     */
     @Override
     public final PrintStream append( final char data ) {
         getDelegate().append( data );
         return this;
     }
 
+    /**
+     * Delegates the call to the wrapped print stream.
+     */
     @Override
     public final void write( final byte[] data ) throws IOException {
         getDelegate().write( data );

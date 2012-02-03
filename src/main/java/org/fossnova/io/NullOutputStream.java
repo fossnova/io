@@ -37,8 +37,6 @@ public final class NullOutputStream extends OutputStream {
 
     /**
      * Returns <code>NullOutputStream</code> singleton instance.
-     * 
-     * @return <code>NullOutputStream</code> singleton instance
      */
     public static NullOutputStream getInstance() {
         return INSTANCE;
@@ -46,9 +44,6 @@ public final class NullOutputStream extends OutputStream {
 
     /**
      * Does nothing.
-     * 
-     * @param data ignored
-     * @throws IOException never thrown
      */
     @Override
     public void write( final int data ) throws IOException {
@@ -56,9 +51,6 @@ public final class NullOutputStream extends OutputStream {
 
     /**
      * Does nothing.
-     * 
-     * @param data ignored
-     * @throws IOException never thrown
      */
     @Override
     public void write( final byte[] data ) throws IOException {
@@ -66,11 +58,6 @@ public final class NullOutputStream extends OutputStream {
 
     /**
      * Does nothing.
-     * 
-     * @param data ignored
-     * @param offset ignored
-     * @param length ignored
-     * @throws IOException never thrown
      */
     @Override
     public void write( final byte[] data, final int offset, final int length ) throws IOException {
@@ -78,8 +65,6 @@ public final class NullOutputStream extends OutputStream {
 
     /**
      * Does nothing.
-     * 
-     * @throws IOException never thrown
      */
     @Override
     public void flush() throws IOException {
@@ -87,8 +72,6 @@ public final class NullOutputStream extends OutputStream {
 
     /**
      * Does nothing.
-     * 
-     * @throws IOException never thrown
      */
     @Override
     public void close() throws IOException {

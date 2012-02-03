@@ -23,7 +23,15 @@ import java.io.IOException;
 import java.io.OutputStream;
 
 /**
- * TODO: javadoc
+ * <p>
+ * A <code>DelegatingOutputStream</code> overrides all methods of
+ * <code>OutputStream</code> and delegates their execution to the wrapped
+ * <code>OutputStream</code>. The wrapped <code>OutputStream</code>
+ * is always obtained via {@link #getDelegate()} method.
+ * </p>
+ * <p>
+ * This class represents the alternative to <code>java.io.FilterOutputStream</code>. 
+ * </p>
  * 
  * @author <a href="mailto:opalka dot richard at gmail dot com">Richard Opalka</a>
  */
@@ -31,10 +39,19 @@ public class DelegatingOutputStream extends OutputStream {
 
     private final OutputStream delegate;
 
+    /**
+     * Creates a <code>DelegatingOutputStream</code> that wraps {@link org.fossnova.io.NullOutputStream}.
+     */
     public DelegatingOutputStream() {
-        delegate = NullOutputStream.getInstance();
+        this( NullOutputStream.getInstance() );
     }
 
+    /**
+     * Creates a <code>DelegatingOutputStream</code> that wraps passed output stream.
+     *
+     * @param delegate the output stream to be wrapped
+     * @throws <code>IllegalArgumentException</code> if parameter is null
+     */
     public DelegatingOutputStream( final OutputStream delegate ) {
         if ( delegate == null ) {
             throw new IllegalArgumentException();
@@ -42,30 +59,48 @@ public class DelegatingOutputStream extends OutputStream {
         this.delegate = delegate;
     }
 
+    /**
+     * Returns wrapped output stream.
+     */
     protected OutputStream getDelegate() {
         return delegate;
     }
 
+    /**
+     * Delegates the call to the wrapped output stream.
+     */
     @Override
     public final void write( final int data ) throws IOException {
         getDelegate().write( data );
     }
 
+    /**
+     * Delegates the call to the wrapped output stream.
+     */
     @Override
     public final void write( final byte[] data ) throws IOException {
         getDelegate().write( data );
     }
 
+    /**
+     * Delegates the call to the wrapped output stream.
+     */
     @Override
     public final void write( final byte[] data, final int offset, final int length ) throws IOException {
         getDelegate().write( data, offset, length );
     }
 
+    /**
+     * Delegates the call to the wrapped output stream.
+     */
     @Override
     public final void flush() throws IOException {
         getDelegate().flush();
     }
 
+    /**
+     * Delegates the call to the wrapped output stream.
+     */
     @Override
     public final void close() throws IOException {
         getDelegate().close();

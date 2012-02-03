@@ -38,8 +38,6 @@ public final class NullReader extends Reader {
 
     /**
      * Returns <code>NullReader</code> singleton instance.
-     * 
-     * @return <code>NullReader</code> singleton instance
      */
     public static NullReader getInstance() {
         return INSTANCE;
@@ -47,10 +45,6 @@ public final class NullReader extends Reader {
 
     /**
      * Does nothing.
-     * 
-     * @param buffer ignored
-     * @return <code>-1</code>
-     * @throws IOException never thrown
      */
     @Override
     public int read( final CharBuffer buffer ) throws IOException {
@@ -59,9 +53,6 @@ public final class NullReader extends Reader {
 
     /**
      * Does nothing.
-     * 
-     * @return <code>-1</code>
-     * @throws IOException never thrown
      */
     @Override
     public int read() throws IOException {
@@ -70,10 +61,6 @@ public final class NullReader extends Reader {
 
     /**
      * Does nothing.
-     * 
-     * @param buffer ignored
-     * @return <code>-1</code>
-     * @throws IOException never thrown
      */
     @Override
     public int read( final char[] buffer ) throws IOException {
@@ -82,12 +69,6 @@ public final class NullReader extends Reader {
 
     /**
      * Does nothing.
-     * 
-     * @param buffer ignored
-     * @param offset ignored
-     * @param length ignored
-     * @return <code>-1</code>
-     * @throws IOException never thrown
      */
     @Override
     public int read( final char[] buffer, final int offset, final int length ) throws IOException {
@@ -96,8 +77,6 @@ public final class NullReader extends Reader {
 
     /**
      * Does nothing.
-     * 
-     * @throws IOException never thrown
      */
     @Override
     public void close() throws IOException {
@@ -105,10 +84,6 @@ public final class NullReader extends Reader {
 
     /**
      * Does nothing.
-     * 
-     * @param count ignored
-     * @return <code>0</code>
-     * @throws IOException never thrown
      */
     @Override
     public long skip( final long count ) throws IOException {
@@ -117,9 +92,6 @@ public final class NullReader extends Reader {
 
     /**
      * Does nothing.
-     * 
-     * @return <code>false</code>
-     * @throws IOException never thrown
      */
     @Override
     public boolean ready() throws IOException {
@@ -128,8 +100,6 @@ public final class NullReader extends Reader {
 
     /**
      * Does nothing.
-     * 
-     * @return <code>false</code>
      */
     @Override
     public boolean markSupported() {
@@ -138,9 +108,6 @@ public final class NullReader extends Reader {
 
     /**
      * Does nothing.
-     * 
-     * @param readAheadLimit ignored
-     * @throws IOException never thrown
      */
     @Override
     public void mark( final int readAheadLimit ) throws IOException {
@@ -148,8 +115,6 @@ public final class NullReader extends Reader {
 
     /**
      * Does nothing.
-     * 
-     * @throws IOException never thrown
      */
     @Override
     public void reset() throws IOException {

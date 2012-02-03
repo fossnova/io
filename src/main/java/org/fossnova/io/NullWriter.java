@@ -37,8 +37,6 @@ public final class NullWriter extends Writer {
 
     /**
      * Returns <code>NullWriter</code> singleton instance.
-     * 
-     * @return <code>NullWriter</code> singleton instance
      */
     public static NullWriter getInstance() {
         return INSTANCE;
@@ -46,9 +44,6 @@ public final class NullWriter extends Writer {
 
     /**
      * Does nothing.
-     * 
-     * @param data ignored
-     * @throws IOException never thrown
      */
     @Override
     public void write( final int data ) throws IOException {
@@ -56,9 +51,6 @@ public final class NullWriter extends Writer {
 
     /**
      * Does nothing.
-     * 
-     * @param data ignored
-     * @throws IOException never thrown
      */
     @Override
     public void write( final char[] data ) throws IOException {
@@ -66,11 +58,6 @@ public final class NullWriter extends Writer {
 
     /**
      * Does nothing.
-     * 
-     * @param data ignored
-     * @param offset ignored
-     * @param length ignored
-     * @throws IOException never thrown
      */
     @Override
     public void write( final char[] data, final int offset, final int length ) throws IOException {
@@ -78,9 +65,6 @@ public final class NullWriter extends Writer {
 
     /**
      * Does nothing.
-     * 
-     * @param data ignored
-     * @throws IOException never thrown
      */
     @Override
     public void write( final String data ) throws IOException {
@@ -88,11 +72,6 @@ public final class NullWriter extends Writer {
 
     /**
      * Does nothing.
-     * 
-     * @param data ignored
-     * @param offset ignored
-     * @param length ignored
-     * @throws IOException never thrown
      */
     @Override
     public void write( final String data, final int offset, final int length ) throws IOException {
@@ -100,10 +79,6 @@ public final class NullWriter extends Writer {
 
     /**
      * Does nothing.
-     * 
-     * @param data ignored
-     * @throws IOException never thrown
-     * @return This writer
      */
     @Override
     public Writer append( final CharSequence data ) throws IOException {
@@ -112,12 +87,6 @@ public final class NullWriter extends Writer {
 
     /**
      * Does nothing.
-     * 
-     * @param data ignored
-     * @param start ignored
-     * @param end ignored
-     * @throws IOException never thrown
-     * @return This writer
      */
     @Override
     public Writer append( final CharSequence data, final int start, final int end ) throws IOException {
@@ -126,10 +95,6 @@ public final class NullWriter extends Writer {
 
     /**
      * Does nothing.
-     * 
-     * @param data ignored
-     * @throws IOException never thrown
-     * @return This writer
      */
     @Override
     public Writer append( final char data ) throws IOException {
@@ -138,8 +103,6 @@ public final class NullWriter extends Writer {
 
     /**
      * Does nothing.
-     * 
-     * @throws IOException never thrown
      */
     @Override
     public void flush() throws IOException {
@@ -147,8 +110,6 @@ public final class NullWriter extends Writer {
 
     /**
      * Does nothing.
-     * 
-     * @throws IOException never thrown
      */
     @Override
     public void close() throws IOException {

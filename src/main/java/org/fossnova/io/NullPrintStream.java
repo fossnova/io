@@ -39,8 +39,6 @@ public final class NullPrintStream extends PrintStream {
 
     /**
      * Returns <code>NullPrintStream</code> singleton instance.
-     * 
-     * @return <code>NullPrintStream</code> singleton instance
      */
     public static NullPrintStream getInstance() {
         return INSTANCE;
@@ -62,8 +60,6 @@ public final class NullPrintStream extends PrintStream {
 
     /**
      * Does nothing.
-     * 
-     * @return <code>false</code>
      */
     @Override
     public boolean checkError() {
@@ -72,9 +68,6 @@ public final class NullPrintStream extends PrintStream {
 
     /**
      * Does nothing.
-     * 
-     * @param data ignored
-     * @throws IOException never thrown
      */
     @Override
     public void write( final byte[] data ) throws IOException {
@@ -82,8 +75,6 @@ public final class NullPrintStream extends PrintStream {
 
     /**
      * Does nothing.
-     * 
-     * @param data ignored
      */
     @Override
     public void write( final int data ) {
@@ -91,10 +82,6 @@ public final class NullPrintStream extends PrintStream {
 
     /**
      * Does nothing.
-     * 
-     * @param data ignored
-     * @param offset ignored
-     * @param length ignored
      */
     @Override
     public void write( final byte[] data, final int offset, final int length ) {
@@ -102,8 +89,6 @@ public final class NullPrintStream extends PrintStream {
 
     /**
      * Does nothing.
-     * 
-     * @param data ignored
      */
     @Override
     public void print( final boolean data ) {
@@ -111,8 +96,6 @@ public final class NullPrintStream extends PrintStream {
 
     /**
      * Does nothing.
-     * 
-     * @param data ignored
      */
     @Override
     public void print( final char data ) {
@@ -120,8 +103,6 @@ public final class NullPrintStream extends PrintStream {
 
     /**
      * Does nothing.
-     * 
-     * @param data ignored
      */
     @Override
     public void print( final int data ) {
@@ -129,8 +110,6 @@ public final class NullPrintStream extends PrintStream {
 
     /**
      * Does nothing.
-     * 
-     * @param data ignored
      */
     @Override
     public void print( final long data ) {
@@ -138,8 +117,6 @@ public final class NullPrintStream extends PrintStream {
 
     /**
      * Does nothing.
-     * 
-     * @param data ignored
      */
     @Override
     public void print( final float data ) {
@@ -147,8 +124,6 @@ public final class NullPrintStream extends PrintStream {
 
     /**
      * Does nothing.
-     * 
-     * @param data ignored
      */
     @Override
     public void print( final double data ) {
@@ -156,8 +131,6 @@ public final class NullPrintStream extends PrintStream {
 
     /**
      * Does nothing.
-     * 
-     * @param data ignored
      */
     @Override
     public void print( final char[] data ) {
@@ -165,8 +138,6 @@ public final class NullPrintStream extends PrintStream {
 
     /**
      * Does nothing.
-     * 
-     * @param data ignored
      */
     @Override
     public void print( final String data ) {
@@ -174,8 +145,6 @@ public final class NullPrintStream extends PrintStream {
 
     /**
      * Does nothing.
-     * 
-     * @param data ignored
      */
     @Override
     public void print( final Object data ) {
@@ -190,8 +159,6 @@ public final class NullPrintStream extends PrintStream {
 
     /**
      * Does nothing.
-     * 
-     * @param data ignored
      */
     @Override
     public void println( final boolean data ) {
@@ -199,8 +166,6 @@ public final class NullPrintStream extends PrintStream {
 
     /**
      * Does nothing.
-     * 
-     * @param data ignored
      */
     @Override
     public void println( final char data ) {
@@ -208,8 +173,6 @@ public final class NullPrintStream extends PrintStream {
 
     /**
      * Does nothing.
-     * 
-     * @param data ignored
      */
     @Override
     public void println( final int data ) {
@@ -217,8 +180,6 @@ public final class NullPrintStream extends PrintStream {
 
     /**
      * Does nothing.
-     * 
-     * @param data ignored
      */
     @Override
     public void println( final long data ) {
@@ -226,8 +187,6 @@ public final class NullPrintStream extends PrintStream {
 
     /**
      * Does nothing.
-     * 
-     * @param data ignored
      */
     @Override
     public void println( final float data ) {
@@ -235,8 +194,6 @@ public final class NullPrintStream extends PrintStream {
 
     /**
      * Does nothing.
-     * 
-     * @param data ignored
      */
     @Override
     public void println( final double data ) {
@@ -244,8 +201,6 @@ public final class NullPrintStream extends PrintStream {
 
     /**
      * Does nothing.
-     * 
-     * @param data ignored
      */
     @Override
     public void println( final char[] data ) {
@@ -253,8 +208,6 @@ public final class NullPrintStream extends PrintStream {
 
     /**
      * Does nothing.
-     * 
-     * @param data ignored
      */
     @Override
     public void println( final String data ) {
@@ -262,8 +215,6 @@ public final class NullPrintStream extends PrintStream {
 
     /**
      * Does nothing.
-     * 
-     * @param data ignored
      */
     @Override
     public void println( final Object data ) {
@@ -271,10 +222,6 @@ public final class NullPrintStream extends PrintStream {
 
     /**
      * Does nothing.
-     * 
-     * @param format ignored
-     * @param args ignored
-     * @return This print stream
      */
     @Override
     public PrintStream printf( final String format, final Object ... args ) {
@@ -283,11 +230,6 @@ public final class NullPrintStream extends PrintStream {
 
     /**
      * Does nothing.
-     * 
-     * @param locale ignored
-     * @param format ignored
-     * @param args ignored
-     * @return This print stream
      */
     @Override
     public PrintStream printf( final Locale locale, final String format, final Object ... args ) {
@@ -296,10 +238,6 @@ public final class NullPrintStream extends PrintStream {
 
     /**
      * Does nothing.
-     * 
-     * @param format ignored
-     * @param args ignored
-     * @return This print stream
      */
     @Override
     public PrintStream format( final String format, final Object ... args ) {
@@ -308,11 +246,6 @@ public final class NullPrintStream extends PrintStream {
 
     /**
      * Does nothing.
-     * 
-     * @param locale ignored
-     * @param format ignored
-     * @param args ignored
-     * @return This print stream
      */
     @Override
     public PrintStream format( final Locale locale, final String format, final Object ... args ) {
@@ -321,9 +254,6 @@ public final class NullPrintStream extends PrintStream {
 
     /**
      * Does nothing.
-     * 
-     * @param data ignored
-     * @return This print stream
      */
     @Override
     public PrintStream append( final CharSequence data ) {
@@ -332,11 +262,6 @@ public final class NullPrintStream extends PrintStream {
 
     /**
      * Does nothing.
-     * 
-     * @param data ignored
-     * @param start ignored
-     * @param end ignored
-     * @return This print stream
      */
     @Override
     public PrintStream append( final CharSequence data, final int start, final int end ) {
@@ -345,9 +270,6 @@ public final class NullPrintStream extends PrintStream {
 
     /**
      * Does nothing.
-     * 
-     * @param data ignored
-     * @return This print stream
      */
     @Override
     public PrintStream append( final char data ) {
