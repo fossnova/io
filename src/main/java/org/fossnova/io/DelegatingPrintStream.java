@@ -38,13 +38,6 @@ public class DelegatingPrintStream extends PrintStream {
     private final PrintStream delegate;
 
     /**
-     * Creates a <code>DelegatingPrintStream</code> that wraps {@link org.fossnova.io.NullPrintStream}.
-     */
-    public DelegatingPrintStream() {
-        this( NullPrintStream.getInstance() );
-    }
-
-    /**
      * Creates a <code>DelegatingPrintStream</code> that wraps passed print stream.
      *
      * @param delegate the print stream to be wrapped
@@ -69,7 +62,7 @@ public class DelegatingPrintStream extends PrintStream {
      * Delegates the call to the wrapped print stream.
      */
     @Override
-    public final void flush() {
+    public void flush() {
         getDelegate().flush();
     }
 
@@ -77,7 +70,7 @@ public class DelegatingPrintStream extends PrintStream {
      * Delegates the call to the wrapped print stream.
      */
     @Override
-    public final void close() {
+    public void close() {
         getDelegate().close();
     }
 
@@ -85,7 +78,7 @@ public class DelegatingPrintStream extends PrintStream {
      * Delegates the call to the wrapped print stream.
      */
     @Override
-    public final boolean checkError() {
+    public boolean checkError() {
         return getDelegate().checkError();
     }
 
@@ -93,7 +86,7 @@ public class DelegatingPrintStream extends PrintStream {
      * Delegates the call to the wrapped print stream.
      */
     @Override
-    public final void write( final int data ) {
+    public void write( final int data ) {
         getDelegate().write( data );
     }
 
@@ -101,7 +94,7 @@ public class DelegatingPrintStream extends PrintStream {
      * Delegates the call to the wrapped print stream.
      */
     @Override
-    public final void write( final byte[] data, final int offset, final int length ) {
+    public void write( final byte[] data, final int offset, final int length ) {
         getDelegate().write( data, offset, length );
     }
 
@@ -109,7 +102,7 @@ public class DelegatingPrintStream extends PrintStream {
      * Delegates the call to the wrapped print stream.
      */
     @Override
-    public final void print( final boolean data ) {
+    public void print( final boolean data ) {
         getDelegate().print( data );
     }
 
@@ -117,7 +110,7 @@ public class DelegatingPrintStream extends PrintStream {
      * Delegates the call to the wrapped print stream.
      */
     @Override
-    public final void print( final char data ) {
+    public void print( final char data ) {
         getDelegate().print( data );
     }
 
@@ -125,7 +118,7 @@ public class DelegatingPrintStream extends PrintStream {
      * Delegates the call to the wrapped print stream.
      */
     @Override
-    public final void print( final int data ) {
+    public void print( final int data ) {
         getDelegate().print( data );
     }
 
@@ -133,7 +126,7 @@ public class DelegatingPrintStream extends PrintStream {
      * Delegates the call to the wrapped print stream.
      */
     @Override
-    public final void print( final long data ) {
+    public void print( final long data ) {
         getDelegate().print( data );
     }
 
@@ -141,7 +134,7 @@ public class DelegatingPrintStream extends PrintStream {
      * Delegates the call to the wrapped print stream.
      */
     @Override
-    public final void print( final float data ) {
+    public void print( final float data ) {
         getDelegate().print( data );
     }
 
@@ -149,7 +142,7 @@ public class DelegatingPrintStream extends PrintStream {
      * Delegates the call to the wrapped print stream.
      */
     @Override
-    public final void print( final double data ) {
+    public void print( final double data ) {
         getDelegate().print( data );
     }
 
@@ -157,7 +150,7 @@ public class DelegatingPrintStream extends PrintStream {
      * Delegates the call to the wrapped print stream.
      */
     @Override
-    public final void print( final char[] data ) {
+    public void print( final char[] data ) {
         getDelegate().print( data );
     }
 
@@ -165,7 +158,7 @@ public class DelegatingPrintStream extends PrintStream {
      * Delegates the call to the wrapped print stream.
      */
     @Override
-    public final void print( final String data ) {
+    public void print( final String data ) {
         getDelegate().print( data );
     }
 
@@ -173,7 +166,7 @@ public class DelegatingPrintStream extends PrintStream {
      * Delegates the call to the wrapped print stream.
      */
     @Override
-    public final void print( final Object data ) {
+    public void print( final Object data ) {
         getDelegate().print( data );
     }
 
@@ -181,7 +174,7 @@ public class DelegatingPrintStream extends PrintStream {
      * Delegates the call to the wrapped print stream.
      */
     @Override
-    public final void println() {
+    public void println() {
         getDelegate().println();
     }
 
@@ -189,7 +182,7 @@ public class DelegatingPrintStream extends PrintStream {
      * Delegates the call to the wrapped print stream.
      */
     @Override
-    public final void println( final boolean data ) {
+    public void println( final boolean data ) {
         getDelegate().println( data );
     }
 
@@ -197,7 +190,7 @@ public class DelegatingPrintStream extends PrintStream {
      * Delegates the call to the wrapped print stream.
      */
     @Override
-    public final void println( final char data ) {
+    public void println( final char data ) {
         getDelegate().println( data );
     }
 
@@ -205,7 +198,7 @@ public class DelegatingPrintStream extends PrintStream {
      * Delegates the call to the wrapped print stream.
      */
     @Override
-    public final void println( final int data ) {
+    public void println( final int data ) {
         getDelegate().println( data );
     }
 
@@ -213,7 +206,7 @@ public class DelegatingPrintStream extends PrintStream {
      * Delegates the call to the wrapped print stream.
      */
     @Override
-    public final void println( final long data ) {
+    public void println( final long data ) {
         getDelegate().println( data );
     }
 
@@ -221,7 +214,7 @@ public class DelegatingPrintStream extends PrintStream {
      * Delegates the call to the wrapped print stream.
      */
     @Override
-    public final void println( final float data ) {
+    public void println( final float data ) {
         getDelegate().println( data );
     }
 
@@ -229,7 +222,7 @@ public class DelegatingPrintStream extends PrintStream {
      * Delegates the call to the wrapped print stream.
      */
     @Override
-    public final void println( final double data ) {
+    public void println( final double data ) {
         getDelegate().println( data );
     }
 
@@ -237,7 +230,7 @@ public class DelegatingPrintStream extends PrintStream {
      * Delegates the call to the wrapped print stream.
      */
     @Override
-    public final void println( final char[] data ) {
+    public void println( final char[] data ) {
         getDelegate().println( data );
     }
 
@@ -245,7 +238,7 @@ public class DelegatingPrintStream extends PrintStream {
      * Delegates the call to the wrapped print stream.
      */
     @Override
-    public final void println( final String data ) {
+    public void println( final String data ) {
         getDelegate().println( data );
     }
 
@@ -253,7 +246,7 @@ public class DelegatingPrintStream extends PrintStream {
      * Delegates the call to the wrapped print stream.
      */
     @Override
-    public final void println( final Object data ) {
+    public void println( final Object data ) {
         getDelegate().println( data );
     }
 
@@ -261,7 +254,7 @@ public class DelegatingPrintStream extends PrintStream {
      * Delegates the call to the wrapped print stream.
      */
     @Override
-    public final PrintStream printf( final String format, final Object ... args ) {
+    public PrintStream printf( final String format, final Object ... args ) {
         getDelegate().printf( format, args );
         return this;
     }
@@ -270,7 +263,7 @@ public class DelegatingPrintStream extends PrintStream {
      * Delegates the call to the wrapped print stream.
      */
     @Override
-    public final PrintStream printf( final Locale locale, final String format, final Object ... args ) {
+    public PrintStream printf( final Locale locale, final String format, final Object ... args ) {
         getDelegate().printf( locale, format, args );
         return this;
     }
@@ -279,7 +272,7 @@ public class DelegatingPrintStream extends PrintStream {
      * Delegates the call to the wrapped print stream.
      */
     @Override
-    public final PrintStream format( final String format, final Object ... args ) {
+    public PrintStream format( final String format, final Object ... args ) {
         getDelegate().format( format, args );
         return this;
     }
@@ -288,7 +281,7 @@ public class DelegatingPrintStream extends PrintStream {
      * Delegates the call to the wrapped print stream.
      */
     @Override
-    public final PrintStream format( final Locale locale, final String format, final Object ... args ) {
+    public PrintStream format( final Locale locale, final String format, final Object ... args ) {
         getDelegate().format( locale, format, args );
         return this;
     }
@@ -297,7 +290,7 @@ public class DelegatingPrintStream extends PrintStream {
      * Delegates the call to the wrapped print stream.
      */
     @Override
-    public final PrintStream append( final CharSequence data ) {
+    public PrintStream append( final CharSequence data ) {
         getDelegate().append( data );
         return this;
     }
@@ -306,7 +299,7 @@ public class DelegatingPrintStream extends PrintStream {
      * Delegates the call to the wrapped print stream.
      */
     @Override
-    public final PrintStream append( final CharSequence data, final int start, final int end ) {
+    public PrintStream append( final CharSequence data, final int start, final int end ) {
         getDelegate().append( data, start, end );
         return this;
     }
@@ -315,7 +308,7 @@ public class DelegatingPrintStream extends PrintStream {
      * Delegates the call to the wrapped print stream.
      */
     @Override
-    public final PrintStream append( final char data ) {
+    public PrintStream append( final char data ) {
         getDelegate().append( data );
         return this;
     }
@@ -324,7 +317,7 @@ public class DelegatingPrintStream extends PrintStream {
      * Delegates the call to the wrapped print stream.
      */
     @Override
-    public final void write( final byte[] data ) throws IOException {
+    public void write( final byte[] data ) throws IOException {
         getDelegate().write( data );
     }
 }

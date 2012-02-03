@@ -41,13 +41,6 @@ public class DelegatingReader extends Reader {
     private final Reader delegate;
 
     /**
-     * Creates a <code>DelegatingReader</code> that wraps {@link org.fossnova.io.NullReader}.
-     */
-    public DelegatingReader() {
-        this( NullReader.getInstance() );
-    }
-
-    /**
      * Creates a <code>DelegatingReader</code> that wraps passed reader.
      *
      * @param delegate the reader to be wrapped
@@ -71,7 +64,7 @@ public class DelegatingReader extends Reader {
      * Delegates the call to the wrapped reader.
      */
     @Override
-    public final int read( final CharBuffer buffer ) throws IOException {
+    public int read( final CharBuffer buffer ) throws IOException {
         return getDelegate().read( buffer );
     }
 
@@ -79,7 +72,7 @@ public class DelegatingReader extends Reader {
      * Delegates the call to the wrapped reader.
      */
     @Override
-    public final int read() throws IOException {
+    public int read() throws IOException {
         return getDelegate().read();
     }
 
@@ -87,7 +80,7 @@ public class DelegatingReader extends Reader {
      * Delegates the call to the wrapped reader.
      */
     @Override
-    public final int read( final char[] buffer ) throws IOException {
+    public int read( final char[] buffer ) throws IOException {
         return getDelegate().read( buffer );
     }
 
@@ -95,7 +88,7 @@ public class DelegatingReader extends Reader {
      * Delegates the call to the wrapped reader.
      */
     @Override
-    public final int read( final char[] buffer, final int offset, final int length ) throws IOException {
+    public int read( final char[] buffer, final int offset, final int length ) throws IOException {
         return getDelegate().read( buffer, offset, length );
     }
 
@@ -103,7 +96,7 @@ public class DelegatingReader extends Reader {
      * Delegates the call to the wrapped reader.
      */
     @Override
-    public final void close() throws IOException {
+    public void close() throws IOException {
         getDelegate().close();
     }
 
@@ -111,7 +104,7 @@ public class DelegatingReader extends Reader {
      * Delegates the call to the wrapped reader.
      */
     @Override
-    public final long skip( final long count ) throws IOException {
+    public long skip( final long count ) throws IOException {
         return getDelegate().skip( count );
     }
 
@@ -119,7 +112,7 @@ public class DelegatingReader extends Reader {
      * Delegates the call to the wrapped reader.
      */
     @Override
-    public final boolean ready() throws IOException {
+    public boolean ready() throws IOException {
         return getDelegate().ready();
     }
 
@@ -127,7 +120,7 @@ public class DelegatingReader extends Reader {
      * Delegates the call to the wrapped reader.
      */
     @Override
-    public final boolean markSupported() {
+    public boolean markSupported() {
         return getDelegate().markSupported();
     }
 
@@ -135,7 +128,7 @@ public class DelegatingReader extends Reader {
      * Delegates the call to the wrapped reader.
      */
     @Override
-    public final void mark( final int readAheadLimit ) throws IOException {
+    public void mark( final int readAheadLimit ) throws IOException {
         getDelegate().mark( readAheadLimit );
     }
 
@@ -143,7 +136,7 @@ public class DelegatingReader extends Reader {
      * Delegates the call to the wrapped reader.
      */
     @Override
-    public final void reset() throws IOException {
+    public void reset() throws IOException {
         getDelegate().reset();
     }
 }

@@ -40,13 +40,6 @@ public class DelegatingOutputStream extends OutputStream {
     private final OutputStream delegate;
 
     /**
-     * Creates a <code>DelegatingOutputStream</code> that wraps {@link org.fossnova.io.NullOutputStream}.
-     */
-    public DelegatingOutputStream() {
-        this( NullOutputStream.getInstance() );
-    }
-
-    /**
      * Creates a <code>DelegatingOutputStream</code> that wraps passed output stream.
      *
      * @param delegate the output stream to be wrapped
@@ -70,7 +63,7 @@ public class DelegatingOutputStream extends OutputStream {
      * Delegates the call to the wrapped output stream.
      */
     @Override
-    public final void write( final int data ) throws IOException {
+    public void write( final int data ) throws IOException {
         getDelegate().write( data );
     }
 
@@ -78,7 +71,7 @@ public class DelegatingOutputStream extends OutputStream {
      * Delegates the call to the wrapped output stream.
      */
     @Override
-    public final void write( final byte[] data ) throws IOException {
+    public void write( final byte[] data ) throws IOException {
         getDelegate().write( data );
     }
 
@@ -86,7 +79,7 @@ public class DelegatingOutputStream extends OutputStream {
      * Delegates the call to the wrapped output stream.
      */
     @Override
-    public final void write( final byte[] data, final int offset, final int length ) throws IOException {
+    public void write( final byte[] data, final int offset, final int length ) throws IOException {
         getDelegate().write( data, offset, length );
     }
 
@@ -94,7 +87,7 @@ public class DelegatingOutputStream extends OutputStream {
      * Delegates the call to the wrapped output stream.
      */
     @Override
-    public final void flush() throws IOException {
+    public void flush() throws IOException {
         getDelegate().flush();
     }
 
@@ -102,7 +95,7 @@ public class DelegatingOutputStream extends OutputStream {
      * Delegates the call to the wrapped output stream.
      */
     @Override
-    public final void close() throws IOException {
+    public void close() throws IOException {
         getDelegate().close();
     }
 }

@@ -40,13 +40,6 @@ public class DelegatingInputStream extends InputStream {
     private final InputStream delegate;
 
     /**
-     * Creates a <code>DelegatingInputStream</code> that wraps {@link org.fossnova.io.NullInputStream}.
-     */
-    public DelegatingInputStream() {
-        this( NullInputStream.getInstance() );
-    }
-
-    /**
      * Creates a <code>DelegatingInputStream</code> that wraps passed input stream.
      *
      * @param delegate the input stream to be wrapped
@@ -70,7 +63,7 @@ public class DelegatingInputStream extends InputStream {
      * Delegates the call to the wrapped input stream.
      */
     @Override
-    public final int read() throws IOException {
+    public int read() throws IOException {
         return getDelegate().read();
     }
 
@@ -78,7 +71,7 @@ public class DelegatingInputStream extends InputStream {
      * Delegates the call to the wrapped input stream.
      */
     @Override
-    public final int read( final byte[] buffer ) throws IOException {
+    public int read( final byte[] buffer ) throws IOException {
         return getDelegate().read( buffer );
     }
 
@@ -86,7 +79,7 @@ public class DelegatingInputStream extends InputStream {
      * Delegates the call to the wrapped input stream.
      */
     @Override
-    public final int read( final byte[] buffer, final int offset, final int length ) throws IOException {
+    public int read( final byte[] buffer, final int offset, final int length ) throws IOException {
         return getDelegate().read( buffer, offset, length );
     }
 
@@ -94,7 +87,7 @@ public class DelegatingInputStream extends InputStream {
      * Delegates the call to the wrapped input stream.
      */
     @Override
-    public final void close() throws IOException {
+    public void close() throws IOException {
         getDelegate().close();
     }
 
@@ -102,7 +95,7 @@ public class DelegatingInputStream extends InputStream {
      * Delegates the call to the wrapped input stream.
      */
     @Override
-    public final long skip( final long count ) throws IOException {
+    public long skip( final long count ) throws IOException {
         return getDelegate().skip( count );
     }
 
@@ -110,7 +103,7 @@ public class DelegatingInputStream extends InputStream {
      * Delegates the call to the wrapped input stream.
      */
     @Override
-    public final int available() throws IOException {
+    public int available() throws IOException {
         return getDelegate().available();
     }
 
@@ -118,7 +111,7 @@ public class DelegatingInputStream extends InputStream {
      * Delegates the call to the wrapped input stream.
      */
     @Override
-    public final void mark( final int readLimit ) {
+    public void mark( final int readLimit ) {
         getDelegate().mark( readLimit );
     }
 
@@ -126,7 +119,7 @@ public class DelegatingInputStream extends InputStream {
      * Delegates the call to the wrapped input stream.
      */
     @Override
-    public final void reset() throws IOException {
+    public void reset() throws IOException {
         getDelegate().reset();
     }
 
@@ -134,7 +127,7 @@ public class DelegatingInputStream extends InputStream {
      * Delegates the call to the wrapped input stream.
      */
     @Override
-    public final boolean markSupported() {
+    public boolean markSupported() {
         return getDelegate().markSupported();
     }
 }

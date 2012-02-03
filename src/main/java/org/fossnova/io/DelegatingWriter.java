@@ -40,13 +40,6 @@ public class DelegatingWriter extends Writer {
     private final Writer delegate;
 
     /**
-     * Creates a <code>DelegatingWriter</code> that wraps {@link org.fossnova.io.NullWriter}.
-     */
-    public DelegatingWriter() {
-        this( NullWriter.getInstance() );
-    }
-
-    /**
      * Creates a <code>DelegatingWriter</code> that wraps passed writer.
      *
      * @param delegate the writer to be wrapped
@@ -70,7 +63,7 @@ public class DelegatingWriter extends Writer {
      * Delegates the call to the wrapped writer.
      */
     @Override
-    public final void write( final int data ) throws IOException {
+    public void write( final int data ) throws IOException {
         getDelegate().write( data );
     }
 
@@ -78,7 +71,7 @@ public class DelegatingWriter extends Writer {
      * Delegates the call to the wrapped writer.
      */
     @Override
-    public final void write( final char[] data ) throws IOException {
+    public void write( final char[] data ) throws IOException {
         getDelegate().write( data );
     }
 
@@ -86,7 +79,7 @@ public class DelegatingWriter extends Writer {
      * Delegates the call to the wrapped writer.
      */
     @Override
-    public final void write( final char[] data, final int offset, final int length ) throws IOException {
+    public void write( final char[] data, final int offset, final int length ) throws IOException {
         getDelegate().write( data, offset, length );
     }
 
@@ -94,7 +87,7 @@ public class DelegatingWriter extends Writer {
      * Delegates the call to the wrapped writer.
      */
     @Override
-    public final void write( final String data ) throws IOException {
+    public void write( final String data ) throws IOException {
         getDelegate().write( data );
     }
 
@@ -102,7 +95,7 @@ public class DelegatingWriter extends Writer {
      * Delegates the call to the wrapped writer.
      */
     @Override
-    public final void write( final String data, final int offset, final int length ) throws IOException {
+    public void write( final String data, final int offset, final int length ) throws IOException {
         getDelegate().write( data, offset, length );
     }
 
@@ -110,7 +103,7 @@ public class DelegatingWriter extends Writer {
      * Delegates the call to the wrapped writer.
      */
     @Override
-    public final Writer append( final CharSequence data ) throws IOException {
+    public Writer append( final CharSequence data ) throws IOException {
         getDelegate().append( data );
         return this;
     }
@@ -119,7 +112,7 @@ public class DelegatingWriter extends Writer {
      * Delegates the call to the wrapped writer.
      */
     @Override
-    public final Writer append( final CharSequence data, final int start, final int end ) throws IOException {
+    public Writer append( final CharSequence data, final int start, final int end ) throws IOException {
         getDelegate().append( data, start, end );
         return this;
     }
@@ -128,7 +121,7 @@ public class DelegatingWriter extends Writer {
      * Delegates the call to the wrapped writer.
      */
     @Override
-    public final Writer append( final char data ) throws IOException {
+    public Writer append( final char data ) throws IOException {
         getDelegate().append( data );
         return this;
     }
@@ -137,7 +130,7 @@ public class DelegatingWriter extends Writer {
      * Delegates the call to the wrapped writer.
      */
     @Override
-    public final void flush() throws IOException {
+    public void flush() throws IOException {
         getDelegate().flush();
     }
 
@@ -145,7 +138,7 @@ public class DelegatingWriter extends Writer {
      * Delegates the call to the wrapped writer.
      */
     @Override
-    public final void close() throws IOException {
+    public void close() throws IOException {
         getDelegate().close();
     }
 }
