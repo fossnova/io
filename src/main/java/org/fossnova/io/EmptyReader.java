@@ -24,22 +24,22 @@ import java.io.Reader;
 import java.nio.CharBuffer;
 
 /**
- * This <code>Reader</code> does nothing. It is always at the EOF position. It
+ * This reader does nothing. It is always at the EOF position. It
  * never throws <code>IOException</code>.
  * 
  * @author <a href="mailto:opalka dot richard at gmail dot com">Richard Opalka</a>
  */
-public final class NullReader extends Reader {
+public final class EmptyReader extends Reader {
 
-    private static final NullReader INSTANCE = new NullReader();
+    private static final EmptyReader INSTANCE = new EmptyReader();
 
-    private NullReader() {
+    private EmptyReader() {
     }
 
     /**
      * Returns <code>NullReader</code> singleton instance.
      */
-    public static NullReader getInstance() {
+    public static EmptyReader getInstance() {
         return INSTANCE;
     }
 

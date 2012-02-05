@@ -23,22 +23,22 @@ import java.io.IOException;
 import java.io.InputStream;
 
 /**
- * This <code>InputStream</code> does nothing. It is always at the EOF position.
+ * This input stream does nothing. It is always at the EOF position.
  * It never throws <code>IOException</code>.
  * 
  * @author <a href="mailto:opalka dot richard at gmail dot com">Richard Opalka</a>
  */
-public final class NullInputStream extends InputStream {
+public final class EmptyInputStream extends InputStream {
 
-    private static final NullInputStream INSTANCE = new NullInputStream();
+    private static final EmptyInputStream INSTANCE = new EmptyInputStream();
 
-    private NullInputStream() {
+    private EmptyInputStream() {
     }
 
     /**
      * Returns <code>NullInputStream</code> singleton instance.
      */
-    public static NullInputStream getInstance() {
+    public static EmptyInputStream getInstance() {
         return INSTANCE;
     }
 
