@@ -25,6 +25,9 @@ import java.io.Writer;
 /**
  * This <code>Writer</code> does nothing. All data written to it are completely
  * ignored. It never throws <code>IOException</code>.
+ * <p>
+ * This class is thread safe. 
+ * </p>
  * 
  * @author <a href="mailto:opalka dot richard at gmail dot com">Richard Opalka</a>
  */

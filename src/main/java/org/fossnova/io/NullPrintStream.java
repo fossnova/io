@@ -26,6 +26,9 @@ import java.util.Locale;
 /**
  * This <code>PrintStream</code> does nothing. All data written to it are
  * completely ignored. It never throws <code>IOException</code>.
+ * <p>
+ * This class is thread safe. 
+ * </p>
  * 
  * @author <a href="mailto:opalka dot richard at gmail dot com">Richard Opalka</a>
  */

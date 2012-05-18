@@ -30,6 +30,9 @@ import java.util.Locale;
  * <code>PrintStream</code>. The wrapped <code>PrintStream</code>
  * is always obtained via {@link #getDelegate()} method.
  * </p>
+ * <p>
+ * This class is not thread safe. 
+ * </p>
  * 
  * @author <a href="mailto:opalka dot richard at gmail dot com">Richard Opalka</a>
  */

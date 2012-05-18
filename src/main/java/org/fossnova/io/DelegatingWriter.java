@@ -32,6 +32,9 @@ import java.io.Writer;
  * <p>
  * This class represents the alternative to <code>java.io.FilterWriter</code>. 
  * </p>
+ * <p>
+ * This class is not thread safe. 
+ * </p>
  * 
  * @author <a href="mailto:opalka dot richard at gmail dot com">Richard Opalka</a>
  */

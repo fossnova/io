@@ -33,6 +33,9 @@ import java.nio.CharBuffer;
  * <p>
  * This class represents the alternative to <code>java.io.FilterReader</code>. 
  * </p>
+ * <p>
+ * This class is not thread safe. 
+ * </p>
  * 
  * @author <a href="mailto:opalka dot richard at gmail dot com">Richard Opalka</a>
  */

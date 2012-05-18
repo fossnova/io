@@ -25,6 +25,9 @@ import java.io.Writer;
 /**
  * A <code>TeeWriter</code> overrides all methods of <code>Writer</code>
  * and delegates their execution to the wrapped writers.
+ * <p>
+ * This class is not thread safe. 
+ * </p>
  * 
  * @author <a href="mailto:opalka dot richard at gmail dot com">Richard Opalka</a>
  */
