@@ -188,17 +188,10 @@
         <module name="ModifiedControlVariable"/>
         <!-- Checks that the order of modifiers conforms to the suggestions in the Java Language specification. -->
         <module name="ModifierOrder"/>
-        <!-- Checks for multiple occurrences of the same string literal within a single file. -->
-        <module name="MultipleStringLiterals">
-            <property name="allowedDuplicates" value="1"/>
-            <property name="ignoreOccurrenceContext" value=""/>
-        </module>
         <!-- Checks that each variable declaration is in its own statement and on its own line. -->
         <module name="MultipleVariableDeclarations"/>
         <!-- Ensures that exceptions are immutable. -->
         <module name="MutableException"/>
-        <!-- Checks the npath complexity against a specified limit (default = 200). -->
-        <module name="NPathComplexity"/>
         <!-- Checks for braces around code blocks. -->
         <module name="NeedBraces"/>
         <!-- Restricts nested if-else blocks to a specified depth. -->

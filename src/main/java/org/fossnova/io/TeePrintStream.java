@@ -46,12 +46,12 @@ public final class TeePrintStream extends PrintStream {
         super( NullOutputStream.getInstance() );
         // ensure preconditions
         if ( first == null || second == null ) { 
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException( "PrintStream cannot be null" );
         }
         if ( others != null && others.length > 0 ) {
             for ( final OutputStream os : others ) {
                 if ( os == null ) {
-                    throw new IllegalArgumentException();
+                    throw new IllegalArgumentException( "PrintStream cannot be null" );
                 }
             }
         }

@@ -51,7 +51,7 @@ public class DelegatingReader extends Reader {
      */
     public DelegatingReader( final Reader delegate ) {
         if ( delegate == null ) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException( "Reader cannot be null" );
         }
         this.delegate = delegate;
     }

@@ -43,12 +43,12 @@ public final class TeeWriter extends Writer {
     public TeeWriter( final Writer first, final Writer second, final Writer... others ) {
         // ensure preconditions
         if ( first == null || second == null ) { 
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException( "Writer cannot be null" );
         }
         if ( others != null && others.length > 0 ) {
             for ( final Writer os : others ) {
                 if ( os == null ) {
-                    throw new IllegalArgumentException();
+                    throw new IllegalArgumentException( "Writer cannot be null" );
                 }
             }
         }

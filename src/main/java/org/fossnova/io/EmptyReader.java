@@ -51,7 +51,7 @@ public final class EmptyReader extends Reader {
      */
     @Override
     public int read( final CharBuffer buffer ) throws IOException {
-        return Constants.EOF;
+        return -1;
     }
 
     /**
@@ -59,7 +59,7 @@ public final class EmptyReader extends Reader {
      */
     @Override
     public int read() throws IOException {
-        return Constants.EOF;
+        return -1;
     }
 
     /**
@@ -67,7 +67,7 @@ public final class EmptyReader extends Reader {
      */
     @Override
     public int read( final char[] buffer ) throws IOException {
-        return Constants.EOF;
+        return -1;
     }
 
     /**
@@ -75,7 +75,7 @@ public final class EmptyReader extends Reader {
      */
     @Override
     public int read( final char[] buffer, final int offset, final int length ) throws IOException {
-        return Constants.EOF;
+        return -1;
     }
 
     /**
@@ -90,7 +90,7 @@ public final class EmptyReader extends Reader {
      */
     @Override
     public long skip( final long count ) throws IOException {
-        return Constants.ZERO;
+        return 0;
     }
 
     /**

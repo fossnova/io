@@ -49,7 +49,7 @@ public class DelegatingPrintStream extends PrintStream {
     public DelegatingPrintStream( final PrintStream delegate ) {
         super( NullOutputStream.getInstance() );
         if ( delegate == null ) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException( "PrintStream cannot be null" );
         }
         this.delegate = delegate;
     }

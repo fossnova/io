@@ -43,12 +43,12 @@ public final class TeeOutputStream extends OutputStream {
     public TeeOutputStream( final OutputStream first, final OutputStream second, final OutputStream... others ) {
         // ensure preconditions
         if ( first == null || second == null ) { 
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException( "OutputStream cannot be null" );
         }
         if ( others != null && others.length > 0 ) {
             for ( final OutputStream os : others ) {
                 if ( os == null ) {
-                    throw new IllegalArgumentException();
+                    throw new IllegalArgumentException( "OutputStream cannot be null" );
                 }
             }
         }

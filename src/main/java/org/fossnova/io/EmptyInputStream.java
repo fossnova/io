@@ -50,7 +50,7 @@ public final class EmptyInputStream extends InputStream {
      */
     @Override
     public int read() throws IOException {
-        return Constants.EOF;
+        return -1;
     }
 
     /**
@@ -58,7 +58,7 @@ public final class EmptyInputStream extends InputStream {
      */
     @Override
     public int read( final byte[] buffer ) throws IOException {
-        return Constants.EOF;
+        return -1;
     }
 
     /**
@@ -66,7 +66,7 @@ public final class EmptyInputStream extends InputStream {
      */
     @Override
     public int read( final byte[] buffer, final int offset, final int length ) throws IOException {
-        return Constants.EOF;
+        return -1;
     }
 
     /**
@@ -81,7 +81,7 @@ public final class EmptyInputStream extends InputStream {
      */
     @Override
     public long skip( final long count ) throws IOException {
-        return Constants.ZERO;
+        return 0;
     }
 
     /**
@@ -89,7 +89,7 @@ public final class EmptyInputStream extends InputStream {
      */
     @Override
     public int available() throws IOException {
-        return Constants.ZERO;
+        return 0;
     }
 
     /**

@@ -50,7 +50,7 @@ public class DelegatingOutputStream extends OutputStream {
      */
     public DelegatingOutputStream( final OutputStream delegate ) {
         if ( delegate == null ) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException( "OutputStream cannot be null" );
         }
         this.delegate = delegate;
     }

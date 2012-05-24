@@ -50,7 +50,7 @@ public class DelegatingWriter extends Writer {
      */
     public DelegatingWriter( final Writer delegate ) {
         if ( delegate == null ) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException( "Writer cannot be null" );
         }
         this.delegate = delegate;
     }
