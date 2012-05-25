@@ -20,29 +20,28 @@
 package org.fossnova.io;
 
 import java.io.IOException;
-import java.io.InputStream;
+import java.io.Reader;
+import java.nio.CharBuffer;
 
 /**
  * @author <a href="mailto:opalka dot richard at gmail dot com">Richard Opalka</a>
  */
-public final class PushbackInputStream extends DelegatingInputStream {
+public final class PushbackReader extends DelegatingReader {
 
-    private static final int MASK = 0xFF;
-
-    private final byte[] pushBuffer;
+    private final char[] pushBuffer;
 
     private int pushPosition;
 
     private boolean closed;
 
-    public PushbackInputStream( final InputStream delegate, final int size ) {
+    public PushbackReader( final Reader delegate, final int size ) {
         // ensure preconditions
         super( delegate );
         if ( size <= 0 ) {
             throw new IllegalArgumentException( "Push back buffer size must be positive" );
         }
         // initialize
-        pushBuffer = new byte[ size ];
+        pushBuffer = new char[ size ];
         pushPosition = pushBuffer.length;
     }
 
@@ -52,7 +51,7 @@ public final class PushbackInputStream extends DelegatingInputStream {
         ensureOpen();
         // the implementation
         if ( !isPushbackBufferEmpty() ) {
-            return MASK & pushBuffer[ pushPosition++ ];
+            return pushBuffer[ pushPosition++ ];
         } else {
             return super.read();
         }
@@ -65,11 +64,11 @@ public final class PushbackInputStream extends DelegatingInputStream {
             throw new IOException( "Push back buffer is full" );
         }
         // the implementation
-        pushBuffer[ --pushPosition ] = ( byte ) b;
+        pushBuffer[ --pushPosition ] = ( char ) b;
     }
 
     @Override
-    public int read( final byte[] buffer ) throws IOException {
+    public int read( final char[] buffer ) throws IOException {
         // ensure preconditions
         ensureOpen();
         if ( buffer == null ) {
@@ -79,7 +78,7 @@ public final class PushbackInputStream extends DelegatingInputStream {
         return read( buffer, 0, buffer.length );
     }
 
-    public void unread( final byte[] buffer ) throws IOException {
+    public void unread( final char[] buffer ) throws IOException {
         // ensure preconditions
         ensureOpen();
         if ( buffer == null ) {
@@ -90,7 +89,7 @@ public final class PushbackInputStream extends DelegatingInputStream {
     }
 
     @Override
-    public int read( final byte[] buffer, int offset, int length ) throws IOException {
+    public int read( final char[] buffer, int offset, int length ) throws IOException {
         // ensure preconditions
         ensureOpen();
         if ( buffer == null ) {
@@ -105,15 +104,15 @@ public final class PushbackInputStream extends DelegatingInputStream {
         if ( length > ( buffer.length - offset ) ) {
             throw new IllegalArgumentException( "length must be less or equal to free space available in the buffer" );
         }
-        // method implementation
         if ( length == 0 ) {
             return 0;
         }
+        // method implementation
         int returnValue = 0;
         // process pushBuffer first
         if ( !isPushbackBufferEmpty() ) {
-            final int requestedBytesCount = length - offset;
-            final int count = Math.min( requestedBytesCount, getPushbackBufferSize() );
+            final int requestedCharsCount = length - offset;
+            final int count = Math.min( requestedCharsCount, getPushbackBufferSize() );
             System.arraycopy( pushBuffer, pushPosition, buffer, offset, count );
             // update variables accordingly
             pushPosition += count;
@@ -134,7 +133,7 @@ public final class PushbackInputStream extends DelegatingInputStream {
         }
     }
 
-    public void unread( final byte[] buffer, final int offset, final int length ) throws IOException {
+    public void unread( final char[] buffer, final int offset, final int length ) throws IOException {
         // ensure preconditions
         ensureOpen();
         if ( buffer == null ) {
@@ -193,11 +192,68 @@ public final class PushbackInputStream extends DelegatingInputStream {
     }
 
     @Override
-    public int available() throws IOException {
+    public int read( final CharBuffer buffer ) throws IOException {
+        // ensure preconditions
+        ensureOpen();
+        if ( buffer == null ) {
+            throw new IllegalArgumentException( "buffer cannot be null" );
+        }
+        // method implementation
+        if ( buffer.remaining() == 0 ) {
+            return 0;
+        }
+        int returnValue = 0;
+        if ( buffer.hasArray() ) {
+            // reuse internal array
+            final char[] data = buffer.array();
+            returnValue = read( data, buffer.position(), buffer.remaining() );
+            if ( returnValue > 0 ) {
+                buffer.position( buffer.position() + returnValue );
+            }
+        } else {
+            // create temporary array
+            final char[] data = new char[ buffer.remaining() ];
+            returnValue = read( data );
+            if ( returnValue > 0 ) {
+                buffer.put( data, 0, returnValue );
+            }
+        }
+        return returnValue;
+    }
+
+    public void unread( final CharBuffer buffer ) throws IOException {
+        // ensure preconditions
+        ensureOpen();
+        if ( buffer == null ) {
+            throw new IllegalArgumentException( "buffer cannot be null" );
+        }
+        // method implementation
+        final int available = buffer.remaining();
+        if ( available == 0 ) {
+            return;
+        }
+        if ( available > pushPosition ) {
+            throw new IOException( "Push back buffer is full" );
+        }
+        if ( buffer.hasArray() ) {
+            // reuse internal array
+            final char[] data = buffer.array();
+            unread( data, buffer.position(), available );
+            buffer.position( buffer.position() + available );
+        } else {
+            // create temporary array
+            final char[] data = new char[ available ];
+            buffer.get( data );
+            unread( data );
+        }
+    }
+
+    @Override
+    public boolean ready() throws IOException {
         // ensure preconditions
         ensureOpen();
         // method implementation
-        return getPushbackBufferSize() + super.available();
+        return !isPushbackBufferEmpty() || super.ready();
     }
 
     @Override
@@ -225,7 +281,7 @@ public final class PushbackInputStream extends DelegatingInputStream {
 
     private void ensureOpen() {
         if ( closed ) {
-            throw new IllegalStateException( "Stream is closed" );
+            throw new IllegalStateException( "Reader is closed" );
         }
     }
 }
