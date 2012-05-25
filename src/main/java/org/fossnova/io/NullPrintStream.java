@@ -24,7 +24,7 @@ import java.io.PrintStream;
 import java.util.Locale;
 
 /**
- * This <code>PrintStream</code> does nothing. All data written to it are
+ * A <code>NullPrintStream</code> does nothing. All data written to it are
  * completely ignored. It never throws <code>IOException</code>.
  * <p>
  * This class is thread safe. 

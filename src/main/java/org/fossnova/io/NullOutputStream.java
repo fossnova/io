@@ -23,7 +23,7 @@ import java.io.IOException;
 import java.io.OutputStream;
 
 /**
- * This <code>OutputStream</code> does nothing. All data written to it are
+ * A <code>NullOutputStream</code> does nothing. All data written to it are
  * completely ignored. It never throws <code>IOException</code>.
  * <p>
  * This class is thread safe. 

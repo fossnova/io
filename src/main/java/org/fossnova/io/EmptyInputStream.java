@@ -23,7 +23,7 @@ import java.io.IOException;
 import java.io.InputStream;
 
 /**
- * This input stream does nothing. It is always at the EOF position.
+ * An <code>EmptyInputStream</code> does nothing. It is always at the EOF position.
  * It never throws <code>IOException</code>.
  * <p>
  * This class is thread safe. 

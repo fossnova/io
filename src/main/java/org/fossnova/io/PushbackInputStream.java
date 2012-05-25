@@ -23,6 +23,21 @@ import java.io.IOException;
 import java.io.InputStream;
 
 /**
+ * <P>
+ * A <code>PushbackInputStream</code> allows one or more bytes to be pushed back to the stream.
+ * If there are some pushed back bytes in the stream, these are returned
+ * first when <B>read</B> methods or <B>skip</b> method are called.
+ * If there are no pushed back bytes then <B>read</B> methods or <B>skip</b> method
+ * calls are delegated to wrapped stream.
+ * </P>
+ * <P>
+ * The push back buffer has fixed length. Any attempt to push back more bytes
+ * than buffer length will cause <B>java.io.IOException</B>.
+ * </P>
+ * <p>
+ * This class is not thread safe. 
+ * </p>
+ * 
  * @author <a href="mailto:opalka dot richard at gmail dot com">Richard Opalka</a>
  */
 public final class PushbackInputStream extends DelegatingInputStream {
@@ -35,6 +50,12 @@ public final class PushbackInputStream extends DelegatingInputStream {
 
     private boolean closed;
 
+    /**
+     * Creates a <code>PushbackInputStream</code> that wraps passed input stream.
+     *
+     * @param delegate input stream to operate upon
+     * @param size fixed push back buffer size
+     */
     public PushbackInputStream( final InputStream delegate, final int size ) {
         // ensure preconditions
         super( delegate );
@@ -46,6 +67,9 @@ public final class PushbackInputStream extends DelegatingInputStream {
         pushPosition = pushBuffer.length;
     }
 
+    /**
+     * See {@link java.io.InputStream#read()} javadoc.
+     */
     @Override
     public int read() throws IOException {
         // ensure preconditions
@@ -58,6 +82,12 @@ public final class PushbackInputStream extends DelegatingInputStream {
         }
     }
 
+    /**
+     * Push back one byte so it is visible to next read attempts.
+     *
+     * @param b byte to be pushed back
+     * @throws IOException if some I/O error occurs
+     */
     public void unread( final int b ) throws IOException {
         // ensure preconditions
         ensureOpen();
@@ -68,6 +98,9 @@ public final class PushbackInputStream extends DelegatingInputStream {
         pushBuffer[ --pushPosition ] = ( byte ) b;
     }
 
+    /**
+     * See {@link java.io.InputStream#read(byte[])} javadoc.
+     */
     @Override
     public int read( final byte[] buffer ) throws IOException {
         // ensure preconditions
@@ -79,6 +112,12 @@ public final class PushbackInputStream extends DelegatingInputStream {
         return read( buffer, 0, buffer.length );
     }
 
+    /**
+     * Push back all bytes from the buffer so these are visible to next read attempts.
+     *
+     * @param buffer bytes to be pushed back
+     * @throws IOException if some I/O error occurs
+     */
     public void unread( final byte[] buffer ) throws IOException {
         // ensure preconditions
         ensureOpen();
@@ -89,6 +128,9 @@ public final class PushbackInputStream extends DelegatingInputStream {
         unread( buffer, 0, buffer.length );
     }
 
+    /**
+     * See {@link java.io.InputStream#read(byte[], int, int)} javadoc.
+     */
     @Override
     public int read( final byte[] buffer, int offset, int length ) throws IOException {
         // ensure preconditions
@@ -134,6 +176,15 @@ public final class PushbackInputStream extends DelegatingInputStream {
         }
     }
 
+    /**
+     * Push back <B>length</B> bytes from this buffer starting from specified <B>offset</B> position
+     * so these are visible to next read attempts.
+     *
+     * @param buffer holding bytes to be pushed back
+     * @param offset to start copy from
+     * @param length count of bytes to process
+     * @throws IOException if some I/O error occurs
+     */
     public void unread( final byte[] buffer, final int offset, final int length ) throws IOException {
         // ensure preconditions
         ensureOpen();
@@ -160,6 +211,9 @@ public final class PushbackInputStream extends DelegatingInputStream {
         System.arraycopy( buffer, offset, pushBuffer, pushPosition, length );
     }
 
+    /**
+     * See {@link java.io.InputStream#close()} javadoc.
+     */
     @Override
     public void close() throws IOException {
         if ( !closed ) {
@@ -168,6 +222,9 @@ public final class PushbackInputStream extends DelegatingInputStream {
         }
     }
 
+    /**
+     * See {@link java.io.InputStream#skip(long)} javadoc.
+     */
     @Override
     public long skip( long count ) throws IOException {
         // ensure preconditions
@@ -192,6 +249,9 @@ public final class PushbackInputStream extends DelegatingInputStream {
         return returnValue;
     }
 
+    /**
+     * See {@link java.io.InputStream#available()} javadoc.
+     */
     @Override
     public int available() throws IOException {
         // ensure preconditions
@@ -200,16 +260,25 @@ public final class PushbackInputStream extends DelegatingInputStream {
         return getPushbackBufferSize() + super.available();
     }
 
+    /**
+     * Not supported on this stream implementation. Always throws <B>UnsupportedOperationException</B>.
+     */
     @Override
     public void mark( final int readLimit ) {
         throw new UnsupportedOperationException( "mark() not supported" );
     }
 
+    /**
+     * Not supported on this stream implementation. Always throws <B>UnsupportedOperationException</B>.
+     */
     @Override
     public void reset() throws IOException {
         throw new UnsupportedOperationException( "reset() not supported" );
     }
 
+    /**
+     * Not supported on this stream implementation. Always returns <B>false</B>. 
+     */
     @Override
     public boolean markSupported() {
         return false;

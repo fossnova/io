@@ -24,6 +24,21 @@ import java.io.Reader;
 import java.nio.CharBuffer;
 
 /**
+ * <P>
+ * A <code>PushbackReader</code> allows one or more characters to be pushed back to the reader.
+ * If there are some pushed back characters in the reader, these are returned
+ * first when <B>read</B> methods or <B>skip</b> method are called.
+ * If there are no pushed back characters then <B>read</B> methods or <B>skip</b> method
+ * calls are delegated to wrapped reader.
+ * </P>
+ * <P>
+ * The push back buffer has fixed length. Any attempt to push back more characters
+ * than buffer length will cause <B>java.io.IOException</B>.
+ * </P>
+ * <p>
+ * This class is not thread safe. 
+ * </p>
+ * 
  * @author <a href="mailto:opalka dot richard at gmail dot com">Richard Opalka</a>
  */
 public final class PushbackReader extends DelegatingReader {
@@ -34,6 +49,12 @@ public final class PushbackReader extends DelegatingReader {
 
     private boolean closed;
 
+    /**
+     * Creates a <code>PushbackReader</code> that wraps passed reader.
+     *
+     * @param delegate reader to operate upon
+     * @param size fixed push back buffer size
+     */
     public PushbackReader( final Reader delegate, final int size ) {
         // ensure preconditions
         super( delegate );
@@ -45,6 +66,9 @@ public final class PushbackReader extends DelegatingReader {
         pushPosition = pushBuffer.length;
     }
 
+    /**
+     * See {@link java.io.Reader#read()} javadoc.
+     */
     @Override
     public int read() throws IOException {
         // ensure preconditions
@@ -57,6 +81,12 @@ public final class PushbackReader extends DelegatingReader {
         }
     }
 
+    /**
+     * Push back one character so it is visible to next read attempts.
+     *
+     * @param b character to be pushed back
+     * @throws IOException if some I/O error occurs
+     */
     public void unread( final int b ) throws IOException {
         // ensure preconditions
         ensureOpen();
@@ -67,6 +97,9 @@ public final class PushbackReader extends DelegatingReader {
         pushBuffer[ --pushPosition ] = ( char ) b;
     }
 
+    /**
+     * See {@link java.io.Reader#read(char[])} javadoc.
+     */
     @Override
     public int read( final char[] buffer ) throws IOException {
         // ensure preconditions
@@ -78,6 +111,12 @@ public final class PushbackReader extends DelegatingReader {
         return read( buffer, 0, buffer.length );
     }
 
+    /**
+     * Push back all characters from the buffer so these are visible to next read attempts.
+     *
+     * @param buffer characters to be pushed back
+     * @throws IOException if some I/O error occurs
+     */
     public void unread( final char[] buffer ) throws IOException {
         // ensure preconditions
         ensureOpen();
@@ -88,6 +127,9 @@ public final class PushbackReader extends DelegatingReader {
         unread( buffer, 0, buffer.length );
     }
 
+    /**
+     * See {@link java.io.Reader#read(char[], int, int)} javadoc.
+     */
     @Override
     public int read( final char[] buffer, int offset, int length ) throws IOException {
         // ensure preconditions
@@ -133,6 +175,15 @@ public final class PushbackReader extends DelegatingReader {
         }
     }
 
+    /**
+     * Push back <B>length</B> characters from this buffer starting from specified <B>offset</B> position
+     * so these are visible to next read attempts.
+     *
+     * @param buffer holding characters to be pushed back
+     * @param offset to start copy from
+     * @param length count of characters to process
+     * @throws IOException if some I/O error occurs
+     */
     public void unread( final char[] buffer, final int offset, final int length ) throws IOException {
         // ensure preconditions
         ensureOpen();
@@ -159,6 +210,9 @@ public final class PushbackReader extends DelegatingReader {
         System.arraycopy( buffer, offset, pushBuffer, pushPosition, length );
     }
 
+    /**
+     * See {@link java.io.Reader#close()} javadoc.
+     */
     @Override
     public void close() throws IOException {
         if ( !closed ) {
@@ -167,6 +221,9 @@ public final class PushbackReader extends DelegatingReader {
         }
     }
 
+    /**
+     * See {@link java.io.Reader#skip(long)} javadoc.
+     */
     @Override
     public long skip( long count ) throws IOException {
         // ensure preconditions
@@ -191,6 +248,9 @@ public final class PushbackReader extends DelegatingReader {
         return returnValue;
     }
 
+    /**
+     * See {@link java.io.Reader#read(CharBuffer)} javadoc.
+     */
     @Override
     public int read( final CharBuffer buffer ) throws IOException {
         // ensure preconditions
@@ -221,6 +281,13 @@ public final class PushbackReader extends DelegatingReader {
         return returnValue;
     }
 
+    /**
+     * Push back <B>buffer.remaining()</B> characters from this buffer starting from <B>buffer.position()</B>
+     * so these are visible to next read attempts.
+     *
+     * @param buffer holding characters to be pushed back
+     * @throws IOException if some I/O error occurs
+     */
     public void unread( final CharBuffer buffer ) throws IOException {
         // ensure preconditions
         ensureOpen();
@@ -248,6 +315,9 @@ public final class PushbackReader extends DelegatingReader {
         }
     }
 
+    /**
+     * See {@link java.io.Reader#ready()} javadoc.
+     */
     @Override
     public boolean ready() throws IOException {
         // ensure preconditions
@@ -256,16 +326,25 @@ public final class PushbackReader extends DelegatingReader {
         return !isPushbackBufferEmpty() || super.ready();
     }
 
+    /**
+     * Not supported on this reader implementation. Always throws <B>UnsupportedOperationException</B>.
+     */
     @Override
     public void mark( final int readLimit ) {
         throw new UnsupportedOperationException( "mark() not supported" );
     }
 
+    /**
+     * Not supported on this reader implementation. Always throws <B>UnsupportedOperationException</B>.
+     */
     @Override
     public void reset() throws IOException {
         throw new UnsupportedOperationException( "reset() not supported" );
     }
 
+    /**
+     * Not supported on this reader implementation. Always returns <B>false</B>.
+     */
     @Override
     public boolean markSupported() {
         return false;

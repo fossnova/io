@@ -24,7 +24,7 @@ import java.io.Reader;
 import java.nio.CharBuffer;
 
 /**
- * This reader does nothing. It is always at the EOF position. It
+ * An <code>EmptyReader</code> does nothing. It is always at the EOF position. It
  * never throws <code>IOException</code>.
  * <p>
  * This class is thread safe. 
