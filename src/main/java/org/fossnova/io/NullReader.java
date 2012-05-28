@@ -20,29 +20,38 @@
 package org.fossnova.io;
 
 import java.io.IOException;
-import java.io.InputStream;
+import java.io.Reader;
+import java.nio.CharBuffer;
 
 /**
- * An <code>EmptyInputStream</code> does nothing. It is always at the EOF position.
- * It never throws <code>IOException</code>.
+ * An <code>NullReader</code> does nothing. It is always at the EOF position. It
+ * never throws <code>IOException</code>.
  * <p>
  * This class is thread safe. 
  * </p>
  * 
  * @author <a href="mailto:opalka dot richard at gmail dot com">Richard Opalka</a>
  */
-public final class EmptyInputStream extends InputStream {
+public final class NullReader extends Reader {
 
-    private static final EmptyInputStream INSTANCE = new EmptyInputStream();
+    private static final NullReader INSTANCE = new NullReader();
 
-    private EmptyInputStream() {
+    private NullReader() {
     }
 
     /**
-     * Returns <code>NullInputStream</code> singleton instance.
+     * Returns <code>NullReader</code> singleton instance.
      */
-    public static EmptyInputStream getInstance() {
+    public static NullReader getInstance() {
         return INSTANCE;
+    }
+
+    /**
+     * Does nothing.
+     */
+    @Override
+    public int read( final CharBuffer buffer ) throws IOException {
+        return -1;
     }
 
     /**
@@ -57,7 +66,7 @@ public final class EmptyInputStream extends InputStream {
      * Does nothing.
      */
     @Override
-    public int read( final byte[] buffer ) throws IOException {
+    public int read( final char[] buffer ) throws IOException {
         return -1;
     }
 
@@ -65,7 +74,7 @@ public final class EmptyInputStream extends InputStream {
      * Does nothing.
      */
     @Override
-    public int read( final byte[] buffer, final int offset, final int length ) throws IOException {
+    public int read( final char[] buffer, final int offset, final int length ) throws IOException {
         return -1;
     }
 
@@ -88,22 +97,8 @@ public final class EmptyInputStream extends InputStream {
      * Does nothing.
      */
     @Override
-    public int available() throws IOException {
-        return 0;
-    }
-
-    /**
-     * Does nothing.
-     */
-    @Override
-    public void mark( final int readLimit ) {
-    }
-
-    /**
-     * Does nothing.
-     */
-    @Override
-    public void reset() throws IOException {
+    public boolean ready() throws IOException {
+        return Boolean.FALSE.booleanValue();
     }
 
     /**
@@ -112,5 +107,19 @@ public final class EmptyInputStream extends InputStream {
     @Override
     public boolean markSupported() {
         return Boolean.FALSE.booleanValue();
+    }
+
+    /**
+     * Does nothing.
+     */
+    @Override
+    public void mark( final int readAheadLimit ) throws IOException {
+    }
+
+    /**
+     * Does nothing.
+     */
+    @Override
+    public void reset() throws IOException {
     }
 }

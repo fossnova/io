@@ -20,38 +20,29 @@
 package org.fossnova.io;
 
 import java.io.IOException;
-import java.io.Reader;
-import java.nio.CharBuffer;
+import java.io.InputStream;
 
 /**
- * An <code>EmptyReader</code> does nothing. It is always at the EOF position. It
- * never throws <code>IOException</code>.
+ * A <code>NullInputStream</code> does nothing. It is always at the EOF position.
+ * It never throws <code>IOException</code>.
  * <p>
  * This class is thread safe. 
  * </p>
  * 
  * @author <a href="mailto:opalka dot richard at gmail dot com">Richard Opalka</a>
  */
-public final class EmptyReader extends Reader {
+public final class NullInputStream extends InputStream {
 
-    private static final EmptyReader INSTANCE = new EmptyReader();
+    private static final NullInputStream INSTANCE = new NullInputStream();
 
-    private EmptyReader() {
+    private NullInputStream() {
     }
 
     /**
-     * Returns <code>NullReader</code> singleton instance.
+     * Returns <code>NullInputStream</code> singleton instance.
      */
-    public static EmptyReader getInstance() {
+    public static NullInputStream getInstance() {
         return INSTANCE;
-    }
-
-    /**
-     * Does nothing.
-     */
-    @Override
-    public int read( final CharBuffer buffer ) throws IOException {
-        return -1;
     }
 
     /**
@@ -66,7 +57,7 @@ public final class EmptyReader extends Reader {
      * Does nothing.
      */
     @Override
-    public int read( final char[] buffer ) throws IOException {
+    public int read( final byte[] buffer ) throws IOException {
         return -1;
     }
 
@@ -74,7 +65,7 @@ public final class EmptyReader extends Reader {
      * Does nothing.
      */
     @Override
-    public int read( final char[] buffer, final int offset, final int length ) throws IOException {
+    public int read( final byte[] buffer, final int offset, final int length ) throws IOException {
         return -1;
     }
 
@@ -97,8 +88,22 @@ public final class EmptyReader extends Reader {
      * Does nothing.
      */
     @Override
-    public boolean ready() throws IOException {
-        return Boolean.FALSE.booleanValue();
+    public int available() throws IOException {
+        return 0;
+    }
+
+    /**
+     * Does nothing.
+     */
+    @Override
+    public void mark( final int readLimit ) {
+    }
+
+    /**
+     * Does nothing.
+     */
+    @Override
+    public void reset() throws IOException {
     }
 
     /**
@@ -107,19 +112,5 @@ public final class EmptyReader extends Reader {
     @Override
     public boolean markSupported() {
         return Boolean.FALSE.booleanValue();
-    }
-
-    /**
-     * Does nothing.
-     */
-    @Override
-    public void mark( final int readAheadLimit ) throws IOException {
-    }
-
-    /**
-     * Does nothing.
-     */
-    @Override
-    public void reset() throws IOException {
     }
 }
