@@ -20,19 +20,18 @@
 package org.fossnova.io;
 
 import java.io.IOException;
-import java.io.Reader;
-import java.nio.CharBuffer;
+import java.io.InputStream;
 
 /**
  * <P>
- * A <code>PushbackReader</code> allows one or more characters to be pushed back to the reader.
- * If there are some pushed back characters in the reader, these are returned
+ * A <code>PushBbackInputStream</code> allows one or more bytes to be pushed back to the stream.
+ * If there are some pushed back bytes in the stream, these are returned
  * first when <B>read</B> methods or <B>skip</b> method are called.
- * If there are no pushed back characters then <B>read</B> methods or <B>skip</b> method
- * calls are delegated to wrapped reader.
+ * If there are no pushed back bytes then <B>read</B> methods or <B>skip</b> method
+ * calls are delegated to wrapped stream.
  * </P>
  * <P>
- * The push back buffer has fixed length. Any attempt to push back more characters
+ * The push back buffer has fixed length. Any attempt to push back more bytes
  * than buffer length will cause <B>java.io.IOException</B>.
  * </P>
  * <p>
@@ -41,50 +40,52 @@ import java.nio.CharBuffer;
  * 
  * @author <a href="mailto:opalka dot richard at gmail dot com">Richard Opalka</a>
  */
-public final class PushbackReader extends DelegatingReader {
+public final class PushBackInputStream extends DelegatingInputStream {
 
-    private final char[] pushBuffer;
+    private static final int MASK = 0xFF;
+
+    private final byte[] pushBuffer;
 
     private int pushPosition;
 
     private boolean closed;
 
     /**
-     * Creates a <code>PushbackReader</code> that wraps passed reader.
+     * Creates a <code>PushBackInputStream</code> that wraps passed input stream.
      *
-     * @param delegate reader to operate upon
+     * @param delegate input stream to operate upon
      * @param size fixed push back buffer size
      */
-    public PushbackReader( final Reader delegate, final int size ) {
+    public PushBackInputStream( final InputStream delegate, final int size ) {
         // ensure preconditions
         super( delegate );
         if ( size <= 0 ) {
             throw new IllegalArgumentException( "Push back buffer size must be positive" );
         }
         // initialize
-        pushBuffer = new char[ size ];
+        pushBuffer = new byte[ size ];
         pushPosition = pushBuffer.length;
     }
 
     /**
-     * See {@link java.io.Reader#read()} javadoc.
+     * See {@link java.io.InputStream#read()} javadoc.
      */
     @Override
     public int read() throws IOException {
         // ensure preconditions
         ensureOpen();
         // the implementation
-        if ( !isPushbackBufferEmpty() ) {
-            return pushBuffer[ pushPosition++ ];
+        if ( !isPushBackBufferEmpty() ) {
+            return MASK & pushBuffer[ pushPosition++ ];
         } else {
             return super.read();
         }
     }
 
     /**
-     * Push back one character so it is visible to next read attempts.
+     * Push back one byte so it is visible to next read attempts.
      *
-     * @param b character to be pushed back
+     * @param b byte to be pushed back
      * @throws IOException if some I/O error occurs
      */
     public void unread( final int b ) throws IOException {
@@ -94,14 +95,14 @@ public final class PushbackReader extends DelegatingReader {
             throw new IOException( "Push back buffer is full" );
         }
         // the implementation
-        pushBuffer[ --pushPosition ] = ( char ) b;
+        pushBuffer[ --pushPosition ] = ( byte ) b;
     }
 
     /**
-     * See {@link java.io.Reader#read(char[])} javadoc.
+     * See {@link java.io.InputStream#read(byte[])} javadoc.
      */
     @Override
-    public int read( final char[] buffer ) throws IOException {
+    public int read( final byte[] buffer ) throws IOException {
         // ensure preconditions
         ensureOpen();
         if ( buffer == null ) {
@@ -112,12 +113,12 @@ public final class PushbackReader extends DelegatingReader {
     }
 
     /**
-     * Push back all characters from the buffer so these are visible to next read attempts.
+     * Push back all bytes from the buffer so these are visible to next read attempts.
      *
-     * @param buffer characters to be pushed back
+     * @param buffer bytes to be pushed back
      * @throws IOException if some I/O error occurs
      */
-    public void unread( final char[] buffer ) throws IOException {
+    public void unread( final byte[] buffer ) throws IOException {
         // ensure preconditions
         ensureOpen();
         if ( buffer == null ) {
@@ -128,10 +129,10 @@ public final class PushbackReader extends DelegatingReader {
     }
 
     /**
-     * See {@link java.io.Reader#read(char[], int, int)} javadoc.
+     * See {@link java.io.InputStream#read(byte[], int, int)} javadoc.
      */
     @Override
-    public int read( final char[] buffer, int offset, int length ) throws IOException {
+    public int read( final byte[] buffer, int offset, int length ) throws IOException {
         // ensure preconditions
         ensureOpen();
         if ( buffer == null ) {
@@ -146,15 +147,15 @@ public final class PushbackReader extends DelegatingReader {
         if ( length > ( buffer.length - offset ) ) {
             throw new IllegalArgumentException( "length must be less or equal to free space available in the buffer" );
         }
+        // method implementation
         if ( length == 0 ) {
             return 0;
         }
-        // method implementation
         int returnValue = 0;
         // process pushBuffer first
-        if ( !isPushbackBufferEmpty() ) {
-            final int requestedCharsCount = length - offset;
-            final int count = Math.min( requestedCharsCount, getPushbackBufferSize() );
+        if ( !isPushBackBufferEmpty() ) {
+            final int requestedBytesCount = length - offset;
+            final int count = Math.min( requestedBytesCount, getPushBackBufferSize() );
             System.arraycopy( pushBuffer, pushPosition, buffer, offset, count );
             // update variables accordingly
             pushPosition += count;
@@ -176,15 +177,15 @@ public final class PushbackReader extends DelegatingReader {
     }
 
     /**
-     * Push back <B>length</B> characters from this buffer starting from specified <B>offset</B> position
+     * Push back <B>length</B> bytes from this buffer starting from specified <B>offset</B> position
      * so these are visible to next read attempts.
      *
-     * @param buffer holding characters to be pushed back
+     * @param buffer holding bytes to be pushed back
      * @param offset to start copy from
-     * @param length count of characters to process
+     * @param length count of bytes to process
      * @throws IOException if some I/O error occurs
      */
-    public void unread( final char[] buffer, final int offset, final int length ) throws IOException {
+    public void unread( final byte[] buffer, final int offset, final int length ) throws IOException {
         // ensure preconditions
         ensureOpen();
         if ( buffer == null ) {
@@ -211,18 +212,7 @@ public final class PushbackReader extends DelegatingReader {
     }
 
     /**
-     * See {@link java.io.Reader#close()} javadoc.
-     */
-    @Override
-    public void close() throws IOException {
-        if ( !closed ) {
-            closed = true;
-            super.close();
-        }
-    }
-
-    /**
-     * See {@link java.io.Reader#skip(long)} javadoc.
+     * See {@link java.io.InputStream#skip(long)} javadoc.
      */
     @Override
     public long skip( long count ) throws IOException {
@@ -234,8 +224,8 @@ public final class PushbackReader extends DelegatingReader {
         }
         long returnValue = 0;
         // process pushBuffer first
-        if ( !isPushbackBufferEmpty() ) {
-            final long skipped = Math.min( count, getPushbackBufferSize() );
+        if ( !isPushBackBufferEmpty() ) {
+            final long skipped = Math.min( count, getPushBackBufferSize() );
             // update variables accordingly
             pushPosition += skipped;
             count -= skipped;
@@ -249,85 +239,26 @@ public final class PushbackReader extends DelegatingReader {
     }
 
     /**
-     * See {@link java.io.Reader#read(CharBuffer)} javadoc.
+     * See {@link java.io.InputStream#available()} javadoc.
      */
     @Override
-    public int read( final CharBuffer buffer ) throws IOException {
+    public int available() throws IOException {
         // ensure preconditions
         ensureOpen();
-        if ( buffer == null ) {
-            throw new IllegalArgumentException( "buffer cannot be null" );
-        }
         // method implementation
-        if ( buffer.remaining() == 0 ) {
-            return 0;
-        }
-        int returnValue = 0;
-        if ( buffer.hasArray() ) {
-            // reuse internal array
-            final char[] data = buffer.array();
-            returnValue = read( data, buffer.position(), buffer.remaining() );
-            if ( returnValue > 0 ) {
-                buffer.position( buffer.position() + returnValue );
-            }
-        } else {
-            // create temporary array
-            final char[] data = new char[ buffer.remaining() ];
-            returnValue = read( data );
-            if ( returnValue > 0 ) {
-                buffer.put( data, 0, returnValue );
-            }
-        }
-        return returnValue;
+        return getPushBackBufferSize() + super.available();
     }
 
     /**
-     * Push back <B>buffer.remaining()</B> characters from this buffer starting from <B>buffer.position()</B>
-     * so these are visible to next read attempts.
-     *
-     * @param buffer holding characters to be pushed back
-     * @throws IOException if some I/O error occurs
-     */
-    public void unread( final CharBuffer buffer ) throws IOException {
-        // ensure preconditions
-        ensureOpen();
-        if ( buffer == null ) {
-            throw new IllegalArgumentException( "buffer cannot be null" );
-        }
-        // method implementation
-        final int available = buffer.remaining();
-        if ( available == 0 ) {
-            return;
-        }
-        if ( available > pushPosition ) {
-            throw new IOException( "Push back buffer is full" );
-        }
-        if ( buffer.hasArray() ) {
-            // reuse internal array
-            final char[] data = buffer.array();
-            unread( data, buffer.position(), available );
-            buffer.position( buffer.position() + available );
-        } else {
-            // create temporary array
-            final char[] data = new char[ available ];
-            buffer.get( data );
-            unread( data );
-        }
-    }
-
-    /**
-     * See {@link java.io.Reader#ready()} javadoc.
+     * Not supported on this stream implementation. Always returns <B>false</B>. 
      */
     @Override
-    public boolean ready() throws IOException {
-        // ensure preconditions
-        ensureOpen();
-        // method implementation
-        return !isPushbackBufferEmpty() || super.ready();
+    public boolean markSupported() {
+        return false;
     }
 
     /**
-     * Not supported on this reader implementation. Always throws <B>UnsupportedOperationException</B>.
+     * Not supported on this stream implementation. Always throws <B>UnsupportedOperationException</B>.
      */
     @Override
     public void mark( final int readLimit ) {
@@ -335,7 +266,7 @@ public final class PushbackReader extends DelegatingReader {
     }
 
     /**
-     * Not supported on this reader implementation. Always throws <B>UnsupportedOperationException</B>.
+     * Not supported on this stream implementation. Always throws <B>UnsupportedOperationException</B>.
      */
     @Override
     public void reset() throws IOException {
@@ -343,24 +274,27 @@ public final class PushbackReader extends DelegatingReader {
     }
 
     /**
-     * Not supported on this reader implementation. Always returns <B>false</B>.
+     * See {@link java.io.InputStream#close()} javadoc.
      */
     @Override
-    public boolean markSupported() {
-        return false;
-    }
-
-    private boolean isPushbackBufferEmpty() {
-        return pushPosition == pushBuffer.length;
-    }
-
-    private int getPushbackBufferSize() {
-        return pushBuffer.length - pushPosition;
+    public void close() throws IOException {
+        if ( !closed ) {
+            closed = true;
+            super.close();
+        }
     }
 
     private void ensureOpen() {
         if ( closed ) {
-            throw new IllegalStateException( "Reader is closed" );
+            throw new IllegalStateException( "Stream is closed" );
         }
+    }
+
+    private boolean isPushBackBufferEmpty() {
+        return pushPosition == pushBuffer.length;
+    }
+
+    private int getPushBackBufferSize() {
+        return pushBuffer.length - pushPosition;
     }
 }
