@@ -127,7 +127,7 @@ public final class BoundedReader extends DelegatingReader {
      * See {@link java.io.Reader#skip(long)} javadoc.
      */
     @Override
-    public long skip( long count ) throws IOException {
+    public long skip( final long count ) throws IOException {
         // ensure preconditions
         ensureOpen();
         // method implementation
@@ -135,7 +135,7 @@ public final class BoundedReader extends DelegatingReader {
             return 0;
         }
         final long skippedCharsCount = super.skip( Math.min( count, remaining() ) );
-        count += skippedCharsCount;
+        position += skippedCharsCount;
         return skippedCharsCount;
     }
 

@@ -126,7 +126,7 @@ public final class BoundedInputStream extends DelegatingInputStream {
      * See {@link java.io.InputStream#skip(long)} javadoc.
      */
     @Override
-    public long skip( long count ) throws IOException {
+    public long skip( final long count ) throws IOException {
         // ensure preconditions
         ensureOpen();
         // method implementation
@@ -134,7 +134,7 @@ public final class BoundedInputStream extends DelegatingInputStream {
             return 0;
         }
         final long skippedBytesCount = super.skip( Math.min( count, remaining() ) );
-        count += skippedBytesCount;
+        position += skippedBytesCount;
         return skippedBytesCount;
     }
 
