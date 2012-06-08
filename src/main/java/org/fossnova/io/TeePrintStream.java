@@ -42,10 +42,10 @@ public final class TeePrintStream extends PrintStream {
      *
      * @throws <code>IllegalArgumentException</code> if parameter is null
      */
-    public TeePrintStream( final PrintStream first, final PrintStream second, final PrintStream... others ) {
+    public TeePrintStream( final PrintStream first, final PrintStream second, final PrintStream ... others ) {
         super( NullOutputStream.getInstance() );
         // ensure preconditions
-        if ( first == null || second == null ) { 
+        if ( first == null || second == null ) {
             throw new IllegalArgumentException( "PrintStream cannot be null" );
         }
         if ( others != null && others.length > 0 ) {
@@ -56,13 +56,13 @@ public final class TeePrintStream extends PrintStream {
             }
         }
         // initialize
-        final int size = 2 + ( others != null ? others.length : 0 ); 
-        delegates = new PrintStream[size];
-        delegates[0] = first;
-        delegates[1] = second;
+        final int size = 2 + ( others != null ? others.length : 0 );
+        delegates = new PrintStream[ size ];
+        delegates[ 0 ] = first;
+        delegates[ 1 ] = second;
         if ( size > 2 ) {
             for ( int i = 0; i < others.length; i++ ) {
-                delegates[2 + i] = others[i];
+                delegates[ 2 + i ] = others[ i ];
             }
         }
     }

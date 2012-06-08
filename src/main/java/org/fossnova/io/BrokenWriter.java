@@ -33,6 +33,7 @@ import java.io.Writer;
 public final class BrokenWriter extends Writer {
 
     private static final BrokenWriter INSTANCE = new BrokenWriter();
+
     private final IOException exception;
 
     private BrokenWriter() {

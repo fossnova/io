@@ -34,6 +34,7 @@ import java.nio.CharBuffer;
 public final class BrokenReader extends Reader {
 
     private static final BrokenReader INSTANCE = new BrokenReader();
+
     private final IOException exception;
 
     private BrokenReader() {

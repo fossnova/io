@@ -40,9 +40,9 @@ public final class TeeWriter extends Writer {
      *
      * @throws <code>IllegalArgumentException</code> if any parameter is null
      */
-    public TeeWriter( final Writer first, final Writer second, final Writer... others ) {
+    public TeeWriter( final Writer first, final Writer second, final Writer ... others ) {
         // ensure preconditions
-        if ( first == null || second == null ) { 
+        if ( first == null || second == null ) {
             throw new IllegalArgumentException( "Writer cannot be null" );
         }
         if ( others != null && others.length > 0 ) {
@@ -53,13 +53,13 @@ public final class TeeWriter extends Writer {
             }
         }
         // initialize
-        final int size = 2 + ( others != null ? others.length : 0 ); 
-        delegates = new Writer[size];
-        delegates[0] = first;
-        delegates[1] = second;
+        final int size = 2 + ( others != null ? others.length : 0 );
+        delegates = new Writer[ size ];
+        delegates[ 0 ] = first;
+        delegates[ 1 ] = second;
         if ( size > 2 ) {
             for ( int i = 0; i < others.length; i++ ) {
-                delegates[2 + i] = others[i];
+                delegates[ 2 + i ] = others[ i ];
             }
         }
     }

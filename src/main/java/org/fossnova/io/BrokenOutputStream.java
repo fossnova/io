@@ -33,10 +33,11 @@ import java.io.OutputStream;
 public final class BrokenOutputStream extends OutputStream {
 
     private static final BrokenOutputStream INSTANCE = new BrokenOutputStream();
+
     private final IOException exception;
 
     private BrokenOutputStream() {
-        exception = new IOException("Broken output stream");
+        exception = new IOException( "Broken output stream" );
     }
 
     /**

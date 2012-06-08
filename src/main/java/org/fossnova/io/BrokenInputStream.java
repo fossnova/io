@@ -33,6 +33,7 @@ import java.io.InputStream;
 public final class BrokenInputStream extends InputStream {
 
     private static final BrokenInputStream INSTANCE = new BrokenInputStream();
+
     private final IOException exception;
 
     private BrokenInputStream() {

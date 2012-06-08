@@ -40,9 +40,9 @@ public final class TeeOutputStream extends OutputStream {
      *
      * @throws <code>IllegalArgumentException</code> if any parameter is null
      */
-    public TeeOutputStream( final OutputStream first, final OutputStream second, final OutputStream... others ) {
+    public TeeOutputStream( final OutputStream first, final OutputStream second, final OutputStream ... others ) {
         // ensure preconditions
-        if ( first == null || second == null ) { 
+        if ( first == null || second == null ) {
             throw new IllegalArgumentException( "OutputStream cannot be null" );
         }
         if ( others != null && others.length > 0 ) {
@@ -53,13 +53,13 @@ public final class TeeOutputStream extends OutputStream {
             }
         }
         // initialize
-        final int size = 2 + ( others != null ? others.length : 0 ); 
-        delegates = new OutputStream[size];
-        delegates[0] = first;
-        delegates[1] = second;
+        final int size = 2 + ( others != null ? others.length : 0 );
+        delegates = new OutputStream[ size ];
+        delegates[ 0 ] = first;
+        delegates[ 1 ] = second;
         if ( size > 2 ) {
             for ( int i = 0; i < others.length; i++ ) {
-                delegates[2 + i] = others[i];
+                delegates[ 2 + i ] = others[ i ];
             }
         }
     }
