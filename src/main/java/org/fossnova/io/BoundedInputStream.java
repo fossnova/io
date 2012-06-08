@@ -47,7 +47,7 @@ public final class BoundedInputStream extends DelegatingInputStream {
      * Creates a <code>BoundedInputStream</code>.
      *
      * @param delegate input stream to be shortened
-     * @param limit input stream bound
+     * @param limit maximum number of bytes to be read
      */
     public BoundedInputStream( final InputStream delegate, final long limit ) {
         // ensure preconditions

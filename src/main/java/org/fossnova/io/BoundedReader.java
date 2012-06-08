@@ -48,7 +48,7 @@ public final class BoundedReader extends DelegatingReader {
      * Creates a <code>BoundedReader</code>.
      *
      * @param delegate reader to be shortened
-     * @param limit reader bound
+     * @param limit maximum number of characters to be read
      */
     public BoundedReader( final Reader delegate, final long limit ) {
         // ensure preconditions
