@@ -24,14 +24,14 @@ import java.io.InputStream;
 
 /**
  * <P>
- * A <code>PushBbackInputStream</code> allows one or more bytes to be pushed back to the stream.
+ * A <code>PushbackInputStream</code> allows one or more bytes to be pushed back to the stream.
  * If there are some pushed back bytes in the stream, these are returned
  * first when <B>read</B> methods or <B>skip</b> method are called.
  * If there are no pushed back bytes then <B>read</B> methods or <B>skip</b> method
  * calls are delegated to wrapped stream.
  * </P>
  * <P>
- * The push back buffer has fixed length. Any attempt to push back more bytes
+ * The pushback buffer has fixed length. Any attempt to push back more bytes
  * than buffer length will cause <B>java.io.IOException</B>.
  * </P>
  * <p>
@@ -40,7 +40,7 @@ import java.io.InputStream;
  * 
  * @author <a href="mailto:opalka dot richard at gmail dot com">Richard Opalka</a>
  */
-public final class PushBackInputStream extends DelegatingInputStream {
+public final class PushbackInputStream extends DelegatingInputStream {
 
     private static final int MASK = 0xFF;
 
@@ -51,16 +51,25 @@ public final class PushBackInputStream extends DelegatingInputStream {
     private boolean closed;
 
     /**
-     * Creates a <code>PushBackInputStream</code> that wraps passed input stream.
+     * Creates a <code>PushbackInputStream</code> that wraps passed input stream with a one-byte pushback buffer size.
      *
      * @param delegate input stream to operate upon
-     * @param size fixed push back buffer size
      */
-    public PushBackInputStream( final InputStream delegate, final int size ) {
+    public PushbackInputStream( final InputStream delegate ) {
+        this( delegate, 1 );
+    }
+
+    /**
+     * Creates a <code>PushbackInputStream</code> that wraps passed input stream.
+     *
+     * @param delegate input stream to operate upon
+     * @param size fixed pushback buffer size
+     */
+    public PushbackInputStream( final InputStream delegate, final int size ) {
         // ensure preconditions
         super( delegate );
         if ( size <= 0 ) {
-            throw new IllegalArgumentException( "Push back buffer size must be positive" );
+            throw new IllegalArgumentException( "Pushback buffer size must be positive" );
         }
         // initialize
         pushBuffer = new byte[ size ];
@@ -75,7 +84,7 @@ public final class PushBackInputStream extends DelegatingInputStream {
         // ensure preconditions
         ensureOpen();
         // the implementation
-        if ( !isPushBackBufferEmpty() ) {
+        if ( !isPushbackBufferEmpty() ) {
             return MASK & pushBuffer[ pushPosition++ ];
         } else {
             return super.read();
@@ -92,7 +101,7 @@ public final class PushBackInputStream extends DelegatingInputStream {
         // ensure preconditions
         ensureOpen();
         if ( pushPosition == 0 ) {
-            throw new IOException( "Push back buffer is full" );
+            throw new IOException( "Pushback buffer is full" );
         }
         // the implementation
         pushBuffer[ --pushPosition ] = ( byte ) b;
@@ -153,9 +162,8 @@ public final class PushBackInputStream extends DelegatingInputStream {
         }
         int returnValue = 0;
         // process pushBuffer first
-        if ( !isPushBackBufferEmpty() ) {
-            final int requestedBytesCount = length - offset;
-            final int count = Math.min( requestedBytesCount, getPushBackBufferSize() );
+        if ( !isPushbackBufferEmpty() ) {
+            final int count = Math.min( length, getPushbackBufferSize() );
             System.arraycopy( pushBuffer, pushPosition, buffer, offset, count );
             // update variables accordingly
             pushPosition += count;
@@ -205,7 +213,7 @@ public final class PushBackInputStream extends DelegatingInputStream {
             return;
         }
         if ( length > pushPosition ) {
-            throw new IOException( "Push back buffer is full" );
+            throw new IOException( "Pushback buffer is full" );
         }
         pushPosition -= length;
         System.arraycopy( buffer, offset, pushBuffer, pushPosition, length );
@@ -224,8 +232,8 @@ public final class PushBackInputStream extends DelegatingInputStream {
         }
         long returnValue = 0;
         // process pushBuffer first
-        if ( !isPushBackBufferEmpty() ) {
-            final long skipped = Math.min( count, getPushBackBufferSize() );
+        if ( !isPushbackBufferEmpty() ) {
+            final long skipped = Math.min( count, getPushbackBufferSize() );
             // update variables accordingly
             pushPosition += skipped;
             count -= skipped;
@@ -246,7 +254,7 @@ public final class PushBackInputStream extends DelegatingInputStream {
         // ensure preconditions
         ensureOpen();
         // method implementation
-        return getPushBackBufferSize() + super.available();
+        return getPushbackBufferSize() + super.available();
     }
 
     /**
@@ -290,11 +298,11 @@ public final class PushBackInputStream extends DelegatingInputStream {
         }
     }
 
-    private boolean isPushBackBufferEmpty() {
+    private boolean isPushbackBufferEmpty() {
         return pushPosition == pushBuffer.length;
     }
 
-    private int getPushBackBufferSize() {
+    private int getPushbackBufferSize() {
         return pushBuffer.length - pushPosition;
     }
 }

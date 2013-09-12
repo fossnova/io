@@ -25,14 +25,14 @@ import java.nio.CharBuffer;
 
 /**
  * <P>
- * A <code>PushBackReader</code> allows one or more characters to be pushed back to the reader.
+ * A <code>PushbackReader</code> allows one or more characters to be pushed back to the reader.
  * If there are some pushed back characters in the reader, these are returned
  * first when <B>read</B> methods or <B>skip</b> method are called.
  * If there are no pushed back characters then <B>read</B> methods or <B>skip</b> method
  * calls are delegated to wrapped reader.
  * </P>
  * <P>
- * The push back buffer has fixed length. Any attempt to push back more characters
+ * The pushback buffer has fixed length. Any attempt to push back more characters
  * than buffer length will cause <B>java.io.IOException</B>.
  * </P>
  * <p>
@@ -41,7 +41,7 @@ import java.nio.CharBuffer;
  * 
  * @author <a href="mailto:opalka dot richard at gmail dot com">Richard Opalka</a>
  */
-public final class PushBackReader extends DelegatingReader {
+public final class PushbackReader extends DelegatingReader {
 
     private final char[] pushBuffer;
 
@@ -50,16 +50,25 @@ public final class PushBackReader extends DelegatingReader {
     private boolean closed;
 
     /**
-     * Creates a <code>PushBackReader</code> that wraps passed reader.
+     * Creates a <code>PushbackReader</code> that wraps passed reader with a one-character pushback buffer size.
      *
      * @param delegate reader to operate upon
-     * @param size fixed push back buffer size
      */
-    public PushBackReader( final Reader delegate, final int size ) {
+    public PushbackReader( final Reader delegate ) {
+        this( delegate, 1 );
+    }
+
+    /**
+     * Creates a <code>PushbackReader</code> that wraps passed reader.
+     *
+     * @param delegate reader to operate upon
+     * @param size fixed pushback buffer size
+     */
+    public PushbackReader( final Reader delegate, final int size ) {
         // ensure preconditions
         super( delegate );
         if ( size <= 0 ) {
-            throw new IllegalArgumentException( "Push back buffer size must be positive" );
+            throw new IllegalArgumentException( "Pushback buffer size must be positive" );
         }
         // initialize
         pushBuffer = new char[ size ];
@@ -74,7 +83,7 @@ public final class PushBackReader extends DelegatingReader {
         // ensure preconditions
         ensureOpen();
         // the implementation
-        if ( !isPushBackBufferEmpty() ) {
+        if ( !isPushbackBufferEmpty() ) {
             return pushBuffer[ pushPosition++ ];
         } else {
             return super.read();
@@ -152,9 +161,8 @@ public final class PushBackReader extends DelegatingReader {
         // method implementation
         int returnValue = 0;
         // process pushBuffer first
-        if ( !isPushBackBufferEmpty() ) {
-            final int requestedCharsCount = length - offset;
-            final int count = Math.min( requestedCharsCount, getPushBackBufferSize() );
+        if ( !isPushbackBufferEmpty() ) {
+            final int count = Math.min( length, getPushbackBufferSize() );
             System.arraycopy( pushBuffer, pushPosition, buffer, offset, count );
             // update variables accordingly
             pushPosition += count;
@@ -204,7 +212,7 @@ public final class PushBackReader extends DelegatingReader {
             return;
         }
         if ( length > pushPosition ) {
-            throw new IOException( "Push back buffer is full" );
+            throw new IOException( "Pushback buffer is full" );
         }
         pushPosition -= length;
         System.arraycopy( buffer, offset, pushBuffer, pushPosition, length );
@@ -223,8 +231,8 @@ public final class PushBackReader extends DelegatingReader {
         }
         long returnValue = 0;
         // process pushBuffer first
-        if ( !isPushBackBufferEmpty() ) {
-            final long skipped = Math.min( count, getPushBackBufferSize() );
+        if ( !isPushbackBufferEmpty() ) {
+            final long skipped = Math.min( count, getPushbackBufferSize() );
             // update variables accordingly
             pushPosition += skipped;
             count -= skipped;
@@ -289,7 +297,7 @@ public final class PushBackReader extends DelegatingReader {
             return;
         }
         if ( available > pushPosition ) {
-            throw new IOException( "Push back buffer is full" );
+            throw new IOException( "Pushback buffer is full" );
         }
         if ( buffer.hasArray() ) {
             // reuse internal array
@@ -312,7 +320,7 @@ public final class PushBackReader extends DelegatingReader {
         // ensure preconditions
         ensureOpen();
         // method implementation
-        return !isPushBackBufferEmpty() || super.ready();
+        return !isPushbackBufferEmpty() || super.ready();
     }
 
     /**
@@ -356,11 +364,11 @@ public final class PushBackReader extends DelegatingReader {
         }
     }
 
-    private boolean isPushBackBufferEmpty() {
+    private boolean isPushbackBufferEmpty() {
         return pushPosition == pushBuffer.length;
     }
 
-    private int getPushBackBufferSize() {
+    private int getPushbackBufferSize() {
         return pushBuffer.length - pushPosition;
     }
 }
