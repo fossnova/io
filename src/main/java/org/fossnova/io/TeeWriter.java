@@ -26,9 +26,9 @@ import java.io.Writer;
  * A <code>TeeWriter</code> overrides all methods of <code>Writer</code>
  * and delegates their execution to the wrapped writers.
  * <p>
- * This class is not thread safe. 
+ * This class is not thread safe.
  * </p>
- * 
+ *
  * @author <a href="mailto:opalka dot richard at gmail dot com">Richard Opalka</a>
  */
 public final class TeeWriter extends Writer {
@@ -166,4 +166,5 @@ public final class TeeWriter extends Writer {
             delegate.close();
         }
     }
+
 }

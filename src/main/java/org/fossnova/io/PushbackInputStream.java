@@ -35,9 +35,9 @@ import java.io.InputStream;
  * than buffer length will cause <B>java.io.IOException</B>.
  * </P>
  * <p>
- * This class is not thread safe. 
+ * This class is not thread safe.
  * </p>
- * 
+ *
  * @author <a href="mailto:opalka dot richard at gmail dot com">Richard Opalka</a>
  */
 public final class PushbackInputStream extends DelegatingInputStream {
@@ -305,4 +305,5 @@ public final class PushbackInputStream extends DelegatingInputStream {
     private int getPushbackBufferSize() {
         return pushBuffer.length - pushPosition;
     }
+
 }

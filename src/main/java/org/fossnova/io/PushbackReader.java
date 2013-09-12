@@ -36,9 +36,9 @@ import java.nio.CharBuffer;
  * than buffer length will cause <B>java.io.IOException</B>.
  * </P>
  * <p>
- * This class is not thread safe. 
+ * This class is not thread safe.
  * </p>
- * 
+ *
  * @author <a href="mailto:opalka dot richard at gmail dot com">Richard Opalka</a>
  */
 public final class PushbackReader extends DelegatingReader {
@@ -371,4 +371,5 @@ public final class PushbackReader extends DelegatingReader {
     private int getPushbackBufferSize() {
         return pushBuffer.length - pushPosition;
     }
+
 }

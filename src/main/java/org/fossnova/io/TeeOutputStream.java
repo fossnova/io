@@ -26,9 +26,9 @@ import java.io.OutputStream;
  * A <code>TeeOutputStream</code> overrides all methods of <code>OutputStream</code>
  * and delegates their execution to the wrapped output streams.
  * <p>
- * This class is not thread safe. 
+ * This class is not thread safe.
  * </p>
- * 
+ *
  * @author <a href="mailto:opalka dot richard at gmail dot com">Richard Opalka</a>
  */
 public final class TeeOutputStream extends OutputStream {
@@ -113,4 +113,5 @@ public final class TeeOutputStream extends OutputStream {
             delegate.close();
         }
     }
+
 }

@@ -33,9 +33,9 @@ import java.io.OutputStream;
  * This class represents the alternative to <code>java.io.FilterOutputStream</code>. 
  * </p>
  * <p>
- * This class is not thread safe. 
+ * This class is not thread safe.
  * </p>
- * 
+ *
  * @author <a href="mailto:opalka dot richard at gmail dot com">Richard Opalka</a>
  */
 public class DelegatingOutputStream extends OutputStream {
@@ -101,4 +101,5 @@ public class DelegatingOutputStream extends OutputStream {
     public void close() throws IOException {
         getDelegate().close();
     }
+
 }

@@ -33,9 +33,9 @@ import java.io.Writer;
  * This class represents the alternative to <code>java.io.FilterWriter</code>. 
  * </p>
  * <p>
- * This class is not thread safe. 
+ * This class is not thread safe.
  * </p>
- * 
+ *
  * @author <a href="mailto:opalka dot richard at gmail dot com">Richard Opalka</a>
  */
 public class DelegatingWriter extends Writer {
@@ -144,4 +144,5 @@ public class DelegatingWriter extends Writer {
     public void close() throws IOException {
         getDelegate().close();
     }
+
 }

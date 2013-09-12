@@ -26,9 +26,9 @@ import java.nio.CharBuffer;
 /**
  * A <code>BrokenReader</code> always throws <code>IOException</code>.
  * <p>
- * This class is thread safe. 
+ * This class is thread safe.
  * </p>
- * 
+ *
  * @author <a href="mailto:opalka dot richard at gmail dot com">Richard Opalka</a>
  */
 public final class BrokenReader extends Reader {
@@ -119,4 +119,5 @@ public final class BrokenReader extends Reader {
     public void reset() throws IOException {
         throw exception;
     }
+
 }

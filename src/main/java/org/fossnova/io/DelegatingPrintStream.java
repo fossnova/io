@@ -31,9 +31,9 @@ import java.util.Locale;
  * is always obtained via {@link #getDelegate()} method.
  * </p>
  * <p>
- * This class is not thread safe. 
+ * This class is not thread safe.
  * </p>
- * 
+ *
  * @author <a href="mailto:opalka dot richard at gmail dot com">Richard Opalka</a>
  */
 public class DelegatingPrintStream extends PrintStream {
@@ -323,4 +323,5 @@ public class DelegatingPrintStream extends PrintStream {
     public void write( final byte[] data ) throws IOException {
         getDelegate().write( data );
     }
+
 }

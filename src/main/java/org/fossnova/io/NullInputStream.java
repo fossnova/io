@@ -26,9 +26,9 @@ import java.io.InputStream;
  * A <code>NullInputStream</code> does nothing. It is always at the EOF position.
  * It never throws <code>IOException</code>.
  * <p>
- * This class is thread safe. 
+ * This class is thread safe.
  * </p>
- * 
+ *
  * @author <a href="mailto:opalka dot richard at gmail dot com">Richard Opalka</a>
  */
 public final class NullInputStream extends InputStream {
@@ -113,4 +113,5 @@ public final class NullInputStream extends InputStream {
     public boolean markSupported() {
         return Boolean.FALSE.booleanValue();
     }
+
 }

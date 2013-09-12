@@ -28,9 +28,9 @@ import java.io.Writer;
  * If the specified maximum of characters is written any further attempt to write one more character results in IOException.
  * </P>
  * <p>
- * This class is not thread safe. 
+ * This class is not thread safe.
  * </p>
- * 
+ *
  * @author <a href="mailto:opalka dot richard at gmail dot com">Richard Opalka</a>
  */
 public final class BoundedWriter extends DelegatingWriter {
@@ -245,4 +245,5 @@ public final class BoundedWriter extends DelegatingWriter {
     private long remaining() {
         return limit - position;
     }
+
 }

@@ -28,9 +28,9 @@ import java.util.Locale;
  * A <code>TeePrintStream</code> overrides all methods of <code>PrintStream</code>
  * and delegates their execution to the wrapped print streams.
  * <p>
- * This class is not thread safe. 
+ * This class is not thread safe.
  * </p>
- * 
+ *
  * @author <a href="mailto:opalka dot richard at gmail dot com">Richard Opalka</a>
  */
 public final class TeePrintStream extends PrintStream {
@@ -396,4 +396,5 @@ public final class TeePrintStream extends PrintStream {
             delegate.write( data );
         }
     }
+
 }

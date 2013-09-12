@@ -26,9 +26,9 @@ import java.io.Writer;
  * A <code>NullWriter</code> does nothing. All data written to it are completely
  * ignored. It never throws <code>IOException</code>.
  * <p>
- * This class is thread safe. 
+ * This class is thread safe.
  * </p>
- * 
+ *
  * @author <a href="mailto:opalka dot richard at gmail dot com">Richard Opalka</a>
  */
 public final class NullWriter extends Writer {
@@ -117,4 +117,5 @@ public final class NullWriter extends Writer {
     @Override
     public void close() throws IOException {
     }
+
 }

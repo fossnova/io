@@ -28,9 +28,9 @@ import java.io.OutputStream;
  * If the specified maximum of bytes is written any further attempt to write one more byte results in IOException.
  * </P>
  * <p>
- * This class is not thread safe. 
+ * This class is not thread safe.
  * </p>
- * 
+ *
  * @author <a href="mailto:opalka dot richard at gmail dot com">Richard Opalka</a>
  */
 public final class BoundedOutputStream extends DelegatingOutputStream {
@@ -155,4 +155,5 @@ public final class BoundedOutputStream extends DelegatingOutputStream {
     private long remaining() {
         return limit - position;
     }
+
 }

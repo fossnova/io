@@ -29,9 +29,9 @@ import java.nio.CharBuffer;
  * If the specified maximum of characters is read, the reader is in EOF condition.
  * </P>
  * <p>
- * This class is not thread safe. 
+ * This class is not thread safe.
  * </p>
- * 
+ *
  * @author <a href="mailto:opalka dot richard at gmail dot com">Richard Opalka</a>
  */
 public final class BoundedReader extends DelegatingReader {
@@ -220,4 +220,5 @@ public final class BoundedReader extends DelegatingReader {
     private long remaining() {
         return limit - position;
     }
+
 }

@@ -25,9 +25,9 @@ import java.io.OutputStream;
 /**
  * A <code>BrokenOutputStream</code> always throws <code>IOException</code>.
  * <p>
- * This class is thread safe. 
+ * This class is thread safe.
  * </p>
- * 
+ *
  * @author <a href="mailto:opalka dot richard at gmail dot com">Richard Opalka</a>
  */
 public final class BrokenOutputStream extends OutputStream {
@@ -86,4 +86,5 @@ public final class BrokenOutputStream extends OutputStream {
     public void close() throws IOException {
         throw exception;
     }
+
 }

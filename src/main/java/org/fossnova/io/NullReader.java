@@ -27,9 +27,9 @@ import java.nio.CharBuffer;
  * An <code>NullReader</code> does nothing. It is always at the EOF position. It
  * never throws <code>IOException</code>.
  * <p>
- * This class is thread safe. 
+ * This class is thread safe.
  * </p>
- * 
+ *
  * @author <a href="mailto:opalka dot richard at gmail dot com">Richard Opalka</a>
  */
 public final class NullReader extends Reader {
@@ -122,4 +122,5 @@ public final class NullReader extends Reader {
     @Override
     public void reset() throws IOException {
     }
+
 }
